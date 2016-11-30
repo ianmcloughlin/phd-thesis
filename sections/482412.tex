@@ -1,0 +1,814 @@
+%!TEX root = ../thesis.tex
+\chapter{The $(48,24,12)$ Code}
+\label{chap:fortyeight}
+In the previous chapter we constructed the $(24,12,8)$ extended binary Golay code.
+The code is the first in the series of extremal type II codes of length a multiple of twenty-four.
+As discussed in chapter \ref{chap:intro}, a type II code is a binary, self-dual and doubly even code.
+Such a code is called extremal if its minimum distance is $4 \lfloor n / 24 \rfloor + 4$ where $n$ is the code's length.
+Of all of the extremal type II codes the ones whose length is a multiple of twenty-four achieve the best minimum distance compared to their length.
+
+For a given length that is a multiple of twenty-four, an extremal type II code may or may not exist.
+As we've seen in the last chapter an extremal $(24,12,8)$ type II code does exist, in the form of the extended binary Golay code.
+It has been shown to be the unique such code up to equivalence.
+In this chapter we will see that a $(48,24,12)$ type II code also exists.
+It is also the unique such code up to equivalence~\cite{hou02}.
+
+We construct the $(48,24,12)$ type II code in this chapter as the principal left ideal of a zero divisor in a dihedral group ring.
+The construction yields straight-forward algebraic proofs of the code being self-dual, doubly even and of dimension twenty-four.
+Furthermore the code as constructed is easily seen to be quasi-cyclic of index two, and a generator matrix given is of reverse circulant generator matrix form.
+The code is constructed in much the same way as the extended binary Golay code in the previous chapter.
+
+The minimum distance of the code is algebraically proven.
+This shows that the constructed code is the $(48,24,12)$ type II code~\cite{hou02}.
+Evaluating the minimum distance is a difficult task, much more so than the algebraic proof of the minimum distance of the Golay code in the previous chapter.
+The difficulty arises primarily due to the greater minimum distance of the code.
+
+It is further compounded by the number of codewords in the code.
+The number of codewords in the extended binary Golay code is two to the power of twelve, or four thousand and ninety-six.
+The $(48,24,12)$ type II code, on the other hand, contains two to the power of twenty-four, or sixteen million, seven hundred and seventy-seven thousand, two hundred and sixteen codewords.
+Proving the minimum distance of the code requires showing that each of the non-zero codewords is of weight at least twelve.
+
+We begin the chapter by listing one hundred and ninety-two zero divisors that we found by computer search to generate the code.
+We then take one of these and algebraically prove that it generates the code.
+Most of the proofs are readily adapted to the other one-hundred and ninety-one zero divisors.
+The only exception is the proof that the minimum distance of the code is twelve, which forms the last part of the chapter.
+It should be noted however that there is no real difficulty in showing that the code is of minimum distance at least eight.
+Problems only arise in showing that the minimum distance is greater than eight.
+
+\section{History of the Code}
+There is only one type II code of length forty-eight, dimension twenty-four and minimum distance twelve.
+This result, published in 2003, was achieved by computer search~\cite{hou02}.
+Thus any type II code of length forty-eight, dimension twenty-four and minimum distance twelve is assumed to be the code.
+The code constructed in this chapter submits to these parameters.
+It should be noted that the equivalence of the code to the extended quadratic residue code is not proven here.
+The result of the uniqueness of such a code was the result of an empirical calculation by computer~\cite{hou02}.
+While we do not doubt the validity of that result, it has not been proved algebraically.
+
+A type II code is a binary code that is both self-dual and doubly even~\cite[p.~339]{huf03}.
+These codes have received a good deal of attention in the literature.
+The reader is directed to Huffman's paper on the classification and enumeration of self-dual codes, published in 2005, for more information~\cite{huf05}.
+A type II code of length $n$ is of minimum distance at most $4 \lfloor n / 24 \rfloor + 4$~\cite[p.~344]{huf03}.
+Codes achieving this upper bound are called extremal~\cite[p.~346]{huf03}.
+The $(48,24,12)$ is thus an extremal type II code.
+It is in an interesting class of extremal type II codes: those of length a multiple of twenty-four.
+Out of all extremal type II codes these achieve the best minimum distance relative to their length, as evidenced by above mentioned upper bound.
+Extremal type II codes of length a multiple of twenty-four have received much attention in their own right.
+Indeed many have called for further investigations into their existence~\cite{kim08}.
+
+The $(48,24,12)$ type II code is commonly constructed by the extension of the quadratic residue code of length forty-seven by an even parity bit.
+Quadratic residue codes and indeed the extensions of quadratic residue codes have received much attention previously.
+The reader should see Ward's chapter in ``The Handbook of Coding Theory'' for more information~\cite[p.~827]{han98a}.
+
+The $(47,24,11)$ quadratic residue code is cyclic and generated by the polynomial $x+x^2+x^3+x^4+x^6+x^7+x^8+x^9+x^{12}+x^{14}+x^{16}+x^{17}+x^{18}+x^{21}+x^{24}+x^{25}+x^{27}+x^{28}+x^{32}+x^{34}+x^{36}+x^{37}+x^{42}$.
+The extended form of the code is not cyclic however and can not be generated by a polynomial~\cite{slo83}.
+We will now prove that the code can be generated by a zero divisor in a dihedral group ring.
+The construction is much like that of the construction of the $(47,24,11)$ code from a polynomial.
+We begin by discussing a certain group ring code in the next section.
+
+\section{Another Group Ring Code}
+In the previous chapter we constructed a group ring code using a zero divisor of the form $u=1+a \mathbf{f}$.
+The zero divisor is an element of the group ring $\mathbb{Z}_2 \mathbf{D}_{24}$, the dihedral group of order twenty-four over the finite field with two elements.
+The group $\mathbf{D}_{24}$ is generated by the element $a$ of order two and the element $b$ of order twelve.
+Regarding the zero divisor $u= 1 + a \mathbf{f}$, the group ring element $\mathbf{f}$ is a sum of powers of $b$.
+The group ring code was shown in the chapter to be the extended binary Golay code.
+
+In this chapter we construct another group ring code in a similar way.
+This time we use the group ring $\mathbb{Z}_2 \mathbf{D}_{48}$, the dihedral group of length forty-eight over the finite field with two elements.
+The group $\mathbf{D}_{48}$ is again generated by two elements $a$ and $b$ but this time, while $a$ is still of order two, $b$ is now of order twenty-four.
+The group is thus presented $\langle a , b \mid a^2 , b^{24} , ab = b^{-1}a \rangle$.
+
+Again we use a zero divisor of the form $u=1+a \mathbf{f}$ but now the element $\mathbf{f}$ is $b^4 + b^5 + b^6 + b^7 + b^9 + b^{10} + b^{11} + b^{13} + b^{15} + b^{18} + b^{19} + b^{20} + b^{21} + b^{22} + b^{23}$.
+We found this generator by computer search using GAP~\cite{gap06}.
+The search found one hundred and ninety-two zero divisors that generate the code.
+These are all of the form $1+ a \mathbf{h}$ where $\mathbf{h}$ is a sum of powers of $b$.
+The one hundred and ninety-two elements can be partitioned into four sets of forty-eight elements.
+
+A representative of each of these sets are the elements $u$ above and the elements $1+a \mathbf{h}_1$, $1+a \mathbf{h}_2$ and $1+a \mathbf{h}_3$ where $h_1$, $h_2$ and $h_3$ are the following three respective elements:
+\begin{enumerate}
+	\item $b^5+b^6+b^7+b^9+b^{10}+b^{12}+b^{13}+b^{15}+b^{17}+b^{18}+b^{19}+b^{20}+b^{21}+b^{22}+b^{23}$.
+	\item $b^2 + b^5 + b^7 + b^9 + b^{10} + b^{12} + b^{13} + b^{14} + b^{15} + b^{17} + b^{19} + b^{20} + b^{21} + b^{22} + b^{23}$.
+	\item $b + b^4 + b^6 + b^7 + b^8 + b^9 + b^{12} + b^{13} + b^{14} + b^{16} + b^{18} + b^{20} + b^{21} + b^{22} + b^{23}$.
+\end{enumerate}
+The other elements in each set are $1 + a b^i \mathbf{h}_k$ for $i$ an integer from one to twenty-three and $1 + a b^j \mathbf{h}_k^{\textrm{T}}$ for $j$ an integer from zero to twenty-three, for $k$ an element of $\{1,2,3,4\}$ and $1 + a \mathbf{h}_4 = u$.
+All of the arguments given below for $u$---bar one---can easily be adapted to any of these other one hundred and ninety-one elements.
+The only argument for which the adaptation is not easy is the proof that the minimum distance of the code derived from $u$ is in fact twelve and not eight.
+We are not aware of any obstacles that would hinder such an adaptation however, it is just that proof is tedious in detail.
+
+The code we construct in this chapter is defined to be the principal left ideal $( \mathbb{Z}_2 \mathbf{D}_{48}) u$ of the zero divisor $u$ in the group ring.
+We denote the code as $\mathcal{C}$.
+Since the group $\mathbf{D}_{48}$ is of order forty-eight, the code $\mathcal{C}$ is of length forty-eight.
+In the following sections we will show that this code is of dimension twenty-four, is self-dual, doubly even, quasi cyclic of index two, generated by a reverse circulant generator matrix and that it is of minimum distance twelve.
+We start by showing that $u$ is a zero divisor in the group ring, which leads to the fact that $\mathcal{C}$ is self-dual.
+
+\section{The Zero Divisor}
+\label{sect:482412zerodiv}
+The group ring element $u$ is a zero divisor.
+Multiplied by itself it yields zero.
+The element $u$ is of the form $1+a \mathbf{f}$ where $\mathbf{f}$ is $b^4 + b^5 + b^6 + b^7 + b^9 + b^{10} + b^{11} + b^{13} + b^{15} + b^{18} + b^{19} + b^{20} + b^{21} + b^{22} + b^{23}$.
+The multiplication is tedious to calculate in the group ring.
+Fortunately the result can be quickly shown using a given group ring matrix of $u$.
+
+The group ring matrix that we will use will be that according to the listing $\{ 1 , b , b^2 , \ldots , b^{23} , a , ab , ab^2 , \ldots , ab^{23} \}$ of $\mathbf{D}_{48}$.
+Under this listing the group ring matrix of $u$ has the form:
+\[ \left[ \begin{array}{c|c}
+I & A \\
+\hline
+A & I
+\end{array} \right] \]
+where $I$ is the twenty-four by twenty-four identity matrix and $A$ is the matrix given in figure \ref{fig:fortyeightmatrixA}.
+\begin{figure}
+\[ \left[ \begin{tabular}{p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} p{0.02in} }
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 \\
+1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 \\
+1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1
+\end{tabular} \right] \]
+\caption{The Matrix $A$.}
+\label{fig:fortyeightmatrixA}
+\end{figure}
+We will denote the full forty-eight by forty-eight matrix as $U$.
+Should $U$ squared equal the zero matrix then the group ring element $u$ squared equals zero.
+This is due to the fact that the ring of group ring matrices under any listing is isomorphic to the group ring.
+
+Of course, just like the matrices of this form discussed in the previous chapter in section \ref{sect:golayzdu}, working block-wise we can show that $U^2$ is zero if and only if $A^2$ is the identity matrix:
+\begin{equation*}
+\begin{split}
+&\qquad U^2 = \underline{0}_{48} \\
+&\Leftrightarrow \left[ \begin{array}{cc} I & A \\ A & I \end{array} \right] \left[ \begin{array}{cc} I & A \\ A & I \end{array} \right] = \underline{0}_{48} \\
+&\Leftrightarrow \left[ \begin{array}{cc} I + A^2 & A + A \\ A + A & I + A^2 \end{array} \right]  = \left[ \begin{array}{cc} \underline{0}_{24} & \underline{0}_{24} \\ \underline{0}_{24} & \underline{0}_{24} \end{array} \right] \\
+&\Leftrightarrow \left[ \begin{array}{cc} I + A^2 & \underline{0}_{24} \\ \underline{0}_{24} & I + A^2 \end{array} \right]  = \left[ \begin{array}{cc} \underline{0}_{24} & \underline{0}_{24} \\ \underline{0}_{24} & \underline{0}_{24} \end{array} \right]. \\
+\end{split}
+\end{equation*}
+The submatrix $A$ is reverse circulant and thus its row vectors are equal to its column vectors.
+Therefore, should the dot product of each row of $A$ with itself be one and the dot product of distinct rows be zero then $A^2$ is the identity matrix and $U^2$ is zero.
+The former property is easy to see.
+Each row of $A$ is a cycle of the first and the first is of weight fifteen.
+Thus the dot product of each row with itself is one.
+
+The result regarding the two distinct rows of $A$ is not quite as straight-forward.
+Since $A$ is reverse circulant the dot product of every pair of its rows is equal to the dot product of row one of $A$ with one of the other rows.
+This is because two rows of $A$ can be cycled by the same amount until one of them becomes the first row, leaving their dot product intact.
+If upon cycling the two rows in this way the non-first row is one of the rows fourteen to twenty-four, then cycling the rows again so that that row becomes the first will induce the other row to become one of rows two to twelve.
+This effect is as described for the extended binary Golay code in section \ref{sect:pairsrows}.
+Therefore, should the dot product of row one with each of rows two to thirteen of $A$ be zero then $U^2$ is equal to zero.
+A quick check verifies this to be the case.
+
+Thus the matrix $U$ upon squaring becomes the forty-eight by forty-eight zero matrix and $u$ is a zero divisor with itself in the group ring.
+We now use this fact to show that the code $\mathcal{C}$ is self-dual and of dimension twenty-four.
+
+\section{Dimension Twenty-Four and Self-Duality}
+The vector form of the group ring code $\mathcal{C}$ is the row space of the matrix $U$.
+This is due to the fact that $\mathcal{C}$ has been defined to be the principal left ideal of $u$ in the group ring.
+The vector form of such codes is discussed in section \ref{sect:vectorforms}.
+The row space of $U$ is a subspace of the vector space $\mathbb{Z}_2^{48}$.
+We will now see that the code is equal to its dual code.
+At the same time we see that the code is of dimension twenty-four.
+
+The matrix $U$ when squared is equal to the zero matrix.
+Thus its columns are contained in its null space.
+The matrix $U$ is equal to its own transpose, as is evident from its description in section \ref{sect:482412zerodiv}.
+Thus the rows of $U$ are also contained in its null space.
+The code $\mathcal{C}$ in vector form is the row space of $U$, and the null space of $U$ is the dual code of $\mathcal{C}$.
+The code $\mathcal{C}$ is therefore contained in its own dual code and is thus self-orthogonal.
+
+The null space of $U$ has dimension forty-eight minus the rank of $U$.
+The rank of $U$ is at least twenty-four since its first twenty-four rows are linearly independent.
+Thus the dimension of the null space is at most twenty-four.
+This is evident from the fact that the twenty-four by twenty-four identity matrix sits as its top-left block.
+The row space of $U$, as we've seen, is contained in its null space, and thus both must in fact be the same space.
+Thus the code $\mathcal{C}$ is not only self-orthogonal, but self-dual.
+Furthermore the code is of dimension twenty-four.
+We will now use these facts to prove that $\mathcal{C}$ is doubly-even.
+
+\section{Doubly Evenness}
+We've just seen that the code is self-orthogonal, and more specifically that it is self-dual.
+Every self-orthogonal code generated by a generator matrix with rows each of weight divisible by four is doubly-even~\cite[p.~10]{huf03}.
+It is easy to find a generator matrix of $\mathcal{C}$ with rows of weights divisible by four, as we shall now see.
+
+The code $\mathcal{C}$ is the row space of the matrix $U$.
+We saw in the previous section that the first twenty-four rows of $U$ are linearly independent.
+We also saw that the dimension of $\mathcal{C}$ is twenty-four.
+Thus $\mathcal{C}$ is generated by the first twenty-four rows of $U$.
+These form a submatrix $G = [I|A]$ of $U$ where $A$ is the matrix in figure \ref{fig:fortyeightmatrixA}.
+The matrix $G$ is thus a generator matrix for $\mathcal{C}$.
+
+The first row of $U$ is of weight sixteen, which is divisible by four.
+All of the other rows of $G$ are permutations of the first row and thus are each of weight sixteen.
+Therefore the self-orthogonal code $\mathcal{C}$ is generated by a generator matrix with rows all of weight divisible by four.
+The code $\mathcal{C}$ is thus doubly even.
+
+Since $\mathcal{C}$ is a binary code that is self-dual and doubly even, it is a type II code.
+The code is of length forty-eight and dimension twenty-four.
+Should its minimum distance be twelve then it is the unique such type II code, and also it is an extremal code.
+Later in this chapter we will prove this to be the case.
+First we will show that the code is quasi-cyclic.
+
+\section{Quasi Cyclicity}
+\label{sect:48quasicyclic}
+The code $\mathcal{C}$ in vector form is generated by the generator matrix $G$.
+The matrix $G$ is of the form $[I|A]$ where $A$ is reverse circulant.
+Such matrices are called reverse circulant generator matrices~\cite[p.~377]{huf03}.
+Reversing the columns of $A$ gives a generator matrix that is double circulant, and this generator matrix generates an equivalent code to $\mathcal{C}$.
+Sometimes double circulantly generated codes are equivalent to quasi cyclic codes~\cite[p.~60]{han98a}.
+This is the case with $\mathcal{C}$.
+
+The code $\mathcal{C}$ is the row space of the matrix $U$.
+The matrix $U$ is of the form:
+\[ \left[ \begin{array}{c|c}
+I & A \\
+\hline
+A & I
+\end{array} \right] \]
+and the matrix $G = [I|A]$ generates the code.
+As generated by $G$ the code $\mathcal{C}$ is quasi cyclic of index two.
+This is due to the fact that the rows of the matrix $[A|I]$ are contained in the code.
+
+Any combination of the rows of $G=[I|A]$ is a codeword and every codeword is a combination of the rows of $G$.
+Let $\underline{c}$ be a given combination of rows of $G$ and let $\underline{d}$ be the combination of the same rows of $[A|I]$.
+Furthermore let $\underline{x}$ be the vector containing the first twenty-four components of $\underline{c}$ in order and $\underline{y}$ be that containing the last twenty-four in order.
+The codeword $\underline{c}$ is equal to $\underline{x} \underline{y}$, by which be mean the concatenation of $\underline{y}$ to $\underline{x}$.
+The codeword $\underline{d}$ is then equal to $\underline{y} \underline{x}$.
+
+Thus for any codeword $\underline{x}\underline{y}$ in $\mathcal{C}$, the codeword $\underline{y} \underline{x}$ is also a codeword.
+Thus the code $\mathcal{C}$ as generated by $G$ is quasi cyclic of index two.
+We use this fact in the following section to show that the code is of minimum distance at least eight.
+
+\section{Minimum Distance at Least Eight}
+In the following section we will prove that the code $\mathcal{C}$ has minimum distance at least eight.
+This facilitates our later proof that the minimum distance is in fact twelve.
+We start by discussing the role that the identity matrix in $G=[I|A]$ plays in determining the weight of a codeword.
+Remember that the minimum of all the weights of the codewords of $\mathcal{C}$ is equal to the code's minimum distance~\cite[p.~8]{huf03}.
+We start by showing that no combination of more than five rows of $G$ is of weight less than eight.
+
+\subsection{More than Eight Rows}
+As in section \ref{sect:48quasicyclic} we let $\underline{c} = \underline{x} \underline{y}$ be a non-zero codeword of $\mathcal{C}$.
+Then $\underline{c}$ is the combination of some set of $i$ rows of $G = [I|A]$ for $i$ an integer between one and twelve.
+The subvector $\underline{x}$ is the combination of those $i$ rows of $I$ and $\underline{y}$ is that of $A$.
+The weight of $\underline{x}$ is exactly $i$.
+Every codeword of $\mathcal{C}$ is doubly even and therefore when $i$ is greater than four the codeword $\underline{c}$ is of weight at least eight.
+Thus every combination of five or more rows of $G$ is of weight at least eight.
+We continue with this notation to now show that no combination of four rows of $G$ is of weight less than eight.
+
+\subsection{Four-Row Combinations}
+The subvector $\underline{y}$ is never of weight zero.
+This is due to $\underline{y}$ being a combination of one or more rows of the matrix $A$.
+In section \ref{sect:482412zerodiv} we saw that $A$ is its own inverse and so is of full rank.
+Thus no combination of four rows of $A$ is the zero vector and $\underline{y}$ is of non-zero weight.
+Furthermore, the subvector $\underline{x}$ is of weight four.
+Every combination of four rows of $G$ is therefore of weight at least five. 
+Combinations of four rows of $G$ are therefore always of weight at least eight, since $\mathcal{C}$ is doubly even.
+We are only left to show that no combination of one, two or three rows of $G$ is of weight less than eight.
+
+\subsection{One and Two Rows}
+\label{sect:48onetworows}
+The one and two row combinations of $G$ are easily seen to be of weight eight or more.
+The first row of $G$ is of weight sixteen and the other rows are all permutations of this row.
+Thus every row of $G$ is of weight sixteen.
+
+Every combination of two rows of $A$ is of weight either ten or fourteen.
+This result is due to the fact that each of rows two to thirteen of $A$ combines with row one of $A$ to give a subvector of weight ten or fourteen.
+Every combination of two rows of $A$ is equal in weight to one of these subvectors due to $A$'s reverse circulant nature.
+Cycling two rows of $A$ the same number of times leaves the weight of their combination intact.
+Either of the two rows of the combination can be cycled until it becomes the first row of $A$.
+Should cycling the other row by the same amount induce it to become one of rows fourteen to twenty-four, then cycling that row to become the first will induce the first row to become one of those from two to twelve.
+This is exactly as described in section \ref{sect:482412zerodiv} for the dot product of two rows.
+Thus each combination of two rows of $G$ is of weight twelve or sixteen.
+The only remaining possibilities for a non-zero codeword of weight less than eight in $\mathcal{C}$ are the three-row combinations of $G$.
+
+\subsection{Three Rows}
+We will use the quasi cyclic nature of $\mathcal{C}$ to show that no three-row combination of $G$ is of weight less than eight.
+Since $\mathcal{C}$ is doubly even, a non-zero codeword of weight less than eight would have to have weight four.
+Every combination of three rows of $I$ is of weight three and thus if a three-row combination of $G$ was of weight four, the combination of those rows of $A$ would be of weight one.
+Thus in such a codeword $\underline{c} = \underline{x} \underline{y}$, $\underline{x}$ would be of weight three and $\underline{y}$ would be of weight one.
+In section \ref{sect:48quasicyclic} we proved that the code is quasi cyclic of index two and thus $\underline{c}$'s existence would imply that $\underline{y} \underline{x}$ was also a codeword.
+This codeword $\underline{y} \underline{x}$ would have to be the combination of a single row of $G$ and would have weight four.
+Every row of $G$ is of weight sixteen however, and thus the codeword $\underline{c}$ cannot exist.
+
+So we see that every non-zero combination of rows of the generator matrix $G$ is of weight at least eight.
+This proves that the minimum distance of the code $\mathcal{C}$ is at least eight.
+The code's minimum distance is in fact twelve, as we shall prove in the rest of this chapter.
+We start by showing that the combinations of three and four rows of $G$ are the key to the proof.
+
+\section{The Three and Four Row Combinations}
+In this section we show that so long as all of the three-row and four-row combinations of $G$ are of weight at least twelve then the minimum distance of $\mathcal{C}$ is twelve.
+In the preceding section we used $\mathcal{C}$'s quasi cyclic nature to prove that no non-zero codeword was of weight less than eight.
+The code $\mathcal{C}$ is doubly even and so the next greatest weight a codeword can have after eight is twelve.
+Showing that no codeword is of weight eight will thus show that the code is of minimum distance at least twelve.
+Note that some of the two-row combinations of $G$ are of weight twelve, as we saw in section \ref{sect:48onetworows}.
+Thus the code is of minimum distance at most twelve.
+We start now by showing that no combination of eight or more rows of $G$ is of weight eight.
+
+\subsection{Eight or More Rows}
+Each combination of eight or more rows of $G$ is of weight at least twelve.
+Just like earlier, we let the codeword $\underline{c}$ be a combination of $i$ rows of $G$.
+We again split $\underline{c}$ into two subvectors $\underline{x}$ and $\underline{y}$ which consist of the first and last twenty-four components of $\underline{c}$ respectively.
+
+The weight of $\underline{x}$ is always $i$.
+Thus every combination of nine or more rows of $G$ is of weight at least nine.
+Since $\mathcal{C}$ is doubly even, every such combination is of weight at least twelve.
+
+When $i$ is eight $\underline{x}$ is of weight eight.
+The codeword $\underline{c}$ would then only be of weight eight if $\underline{y}$ is a zero vector.
+Since $A$ is of full rank, $\underline{y}$ is never the zero vector.
+As a consequence $\underline{y}$ has weight at least one.
+Thus $\underline{c}$ is of weight at least nine and therefore is of weight at least twelve.
+
+We need only to show then that no non-zero combination of less than eight rows of $G$ is of weight eight.
+
+\subsection{Less than Eight Rows}
+The code $\mathcal{C}$ as generated by $G$ is quasi cyclic.
+Again we let $\underline{c} = \underline{x} \underline{y}$ be an arbitrary combination of $i$ rows of $G$.
+We can see that if $\underline{c}$ is of weight eight for $i$ from one to seven, then some combination of $8-i$ rows of $G$ is also of weight eight.
+The weight of $\underline{x}$ is $i$ and that of $\underline{y}$ is $8-i$.
+The vector $\underline{c'} = \underline{y} \underline{x}$ is also a codeword since $\mathcal{C}$ is quasi cyclic.
+The codeword $\underline{c'}$ must be the result of a combination of $8-i$ rows of $G$.
+
+This result is extremely useful.
+It proves that a combination of seven rows of $G$ is only of weight eight if one row is, that of six rows of $G$ is only of weight if a combination of two rows is and that a combination of five rows of $G$ is only of weight eight if a combination of three rows is.
+We have thus reduced the proof of $\mathcal{C}$'s minimum distance being twelve to the proof that no combination of four, three, two or one rows of $G$ is of weight eight.
+Of course, we saw in section \ref{sect:48onetworows} that every single row of $G$ is of weight sixteen and each combination of two rows of $G$ is of weight either twelve or sixteen.
+Thus we have reduced our proof to the combinations of three and four rows of $G$.
+
+Unfortunately, evaluating that the three- and four-row combinations of $G$ are of weight at least twelve is quite a difficult task.
+The number of three-row combinations of $G$ is two thousand and twenty-four and the number of four-row combinations is ten thousand, six hundred and sixty-six.
+Over the next few sections we will see that the proof can be done algebraically.
+We start by discussing how the proof relates to the basis elements of the group ring form of the code $\mathcal{C}$.
+
+\section{Dih-Cycling}
+\label{sect:dihcycling}
+We wish to prove that no combination of three rows and no combination of four rows of the matrix $G$ is of weight eight.
+The $i^\textrm{th}$ row of $G$ is the group ring codeword $g_i u$ in vector form where $g_i$ is the $i^{\textrm{th}}$ element of the listing used of $\mathbf{D}_{48}$, for $i$ an integer from one to twenty-four.
+The listing we have used is $\{ 1 , b , b^2 , \ldots , b^{23}, a , ab , ab^2 , \ldots , ab^{23} \}$.
+Thus the $i^{\textrm{th}}$ row of $G$ is the vector form of the group ring codeword $b^{i-1} u$.
+Obviously then the elements $b^{i-1} u$, for $i$ from one to twenty-four, form a basis for the group ring form of $\mathcal{C}$.
+The vector and group ring forms of group ring codes were discussed in section \ref{sect:vectorforms}.
+
+The proof that each three- and four-row combination of $G$ is not of weight eight is thus equivalent to showing that no set of three and no set of four elements of the form $b^{i-1} u$ for $i$ from one to twenty-four in $\mathbb{Z}_2 \mathbf{D}_{48}$ combine to an element of weight eight.
+This is a useful result because one can assume that one of the elements in such a set of three or four group ring elements is the element $b^0 u = u$.
+Consider the combination $b^j u + b^k u + b^l u $ of the three arbitrary group ring elements $b^j u$, $b^k u$ and $b^l u$ for $j$, $k$ and $l$ distinct integers between zero to twenty-three inclusive.
+The combination $b^{-j}(b^j u + b^k u + b^l u ) = u + b^{k-j} u + b^{l-j} u $ is of equal weight to the original combination.
+Thus if no combination of three basis elements of $\mathcal{C}$, where one of those elements is $u$ itself, is of weight eight, then no combination of any three basis elements is of weight eight.
+The same argument can be applied to four basis elements.
+
+Consider an arbitrary group ring matrix $U'$ of $u$.
+The rows of the matrix that are labelled by the elements $b^{i-1}$ for $i$ from one to twenty-four are a basis for the code $\mathcal{C}$.
+The matrix formed by these rows in order are thus a generator matrix for the code.
+If we can show that every three-row and every four-row combination of such a generator matrix involving the row labelled by the identity $b^0$ of the group is not eight, then the code $\mathcal{C}$ is of minimum distance twelve.
+
+Note that any combination of three basis elements $b^j u + b^k u + b^l u$ and any combination of four basis elements $b^j u + b^k u + b^l u + b^m u$ can be multiplied by any power of $b$ and its weight will remain intact.
+Thus any of the three and four respective powers of $b$ can be cancelled out by premultiplication of the combination by their inverse.
+We can therefore assume that any of the rows in a three or four row combination of such a generator matrix is that labelled by the identity.
+We will call the effect of multiplying such a combination of group ring basis elements by $b^i$ `dih-cycling' the combination $i$ steps forwards.
+We'll also call the effect of multiplying such a combination by $b^{-i}$ `dih-cycling' $i$ steps back(wards).
+
+Throughout the rest of this chapter we will extensively use the concept of dih-cycling.
+Combined with a new generator matrix for $\mathcal{C}$ derived in the next section, dih-cycling enables us to algebraically prove that $\mathcal{C}$ is of minimum distance twelve.
+
+\section{A Different Group Ring Matrix}
+One of the main advantages of deriving a code from the group ring perspective, as we have done, is that we can create many different vector forms of the code, all of which are equivalent.
+This was discussed in section \ref{sect:equivforms} of chapter \ref{chap:intro}.
+These various vector forms of the code are the row spaces of the group ring matrices of $u$ under the different listings of $\mathbf{D}_{48}$.
+Previously in this chapter we have used the listing $\{ 1 , b , b^2 , \ldots , b^{23}, a , ab , ab^2 , \ldots , ab^{23} \}$.
+We now change the listing, instead using the following one:
+\begin{center}
+\begin{tabular}{cc@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}c@{\hspace{2mm}}cc}
+$\{$ &  $b^{ 0 } $,&$ b^{ 8 } $,&$ b^{ 16 } $,&$ b^{ 4 } $,&$ b^{ 12 } $,&$ b^{ 20 } $,&$ b^{ 2 } $,&$ b^{ 10 } $,&$ b^{ 18 } $,&$ b^{ 6 } $,&$ b^{ 14 } $,&$ b^{ 22 } $, & \multirow{3}{*}{$\ $}\\
+\multirow{3}{*}{}&$ b^{ 1 } $,&$ b^{ 9 } $,&$ b^{ 17 } $,&$ b^{ 5 } $,&$ b^{ 13 } $,&$ b^{ 21 } $,&$ b^{ 3 } $,&$ b^{ 11 } $,&$ b^{ 19 } $,&$ b^{ 7 } $,&$ b^{ 15 } $,&$ b^{ 23 } $,&\\
+&$ ab^{ 0 } $,&$ ab^{ 8 } $,&$ ab^{ 16 } $,&$ ab^{ 4 } $,&$ ab^{ 12 } $,&$ ab^{ 20 } $,&$ ab^{ 2 } $,&$ ab^{ 10 } $,&$ ab^{ 18 } $,&$ ab^{ 6 } $,&$ ab^{ 14 } $,&$ ab^{ 22 } $,&\\
+&$ ab^{ 1 } $,&$ ab^{ 9 } $,&$ ab^{ 17 } $,&$ ab^{ 5 } $,&$ ab^{ 13 } $,&$ ab^{ 21 } $,&$ ab^{ 3 } $,&$ ab^{ 11 } $,&$ ab^{ 19 } $,&$ ab^{ 7 } $,&$ ab^{ 15 } $,&$ ab^{ 23 }$&$\}$.
+\end{tabular}
+\end{center}
+
+According to this listing the group ring matrix $W$ of $u$ is of the form:
+\[   \left[   \begin{array}{c|c}
+I & B \\
+\hline
+B & I
+\end{array}   \right]   \]
+where $I$ is the twenty-four by twenty-four identity matrix and $B$ is the twenty-four by twenty-four matrix\footnote{The matrix $B$ here shouldn't be mistaken for the group ring matrix of the group ring element $b$, which we will not discuss in this chapter.} given in figure \ref{fig:fortyeightmatrixB}.
+\begin{figure}
+\begin{center}
+	$
+	\begin{array}{|ccc|ccc||ccc|ccc||ccc|ccc||ccc|ccc|}
+	\hline
+	0&0&0&1&0&1&0&1&1&1&0&1&0&1&0&1&1&1&0&1&1&1&1&1\\
+	0&0&0&0&1&1&1&1&0&0&1&1&1&0&0&1&1&1&1&1&0&1&1&1\\
+	0&0&0&1&1&0&1&0&1&1&1&0&0&0&1&1&1&1&1&0&1&1&1&1\\
+	\hline
+	1&0&1&0&0&0&1&0&1&1&1&0&1&1&1&1&0&0&1&1&1&1&1&0\\
+	0&1&1&0&0&0&0&1&1&1&0&1&1&1&1&0&0&1&1&1&1&1&0&1\\
+	1&1&0&0&0&0&1&1&0&0&1&1&1&1&1&0&1&0&1&1&1&0&1&1\\
+	\hline
+	\hline
+	0&1&1&1&0&1&1&0&1&0&0&0&0&1&1&1&1&1&1&1&1&1&0&0\\
+	1&1&0&0&1&1&0&1&1&0&0&0&1&1&0&1&1&1&1&1&1&0&0&1\\
+	1&0&1&1&1&0&1&1&0&0&0&0&1&0&1&1&1&1&1&1&1&0&1&0\\
+	\hline
+	1&0&1&1&1&0&0&0&0&0&1&1&1&1&1&1&1&0&1&0&0&1&1&1\\
+	0&1&1&1&0&1&0&0&0&1&1&0&1&1&1&1&0&1&0&0&1&1&1&1\\
+	1&1&0&0&1&1&0&0&0&1&0&1&1&1&1&0&1&1&0&1&0&1&1&1\\
+	\hline
+	\hline
+	0&1&0&1&1&1&0&1&1&1&1&1&0&1&1&1&0&1&1&0&1&0&0&0\\
+	1&0&0&1&1&1&1&1&0&1&1&1&1&1&0&0&1&1&0&1&1&0&0&0\\
+	0&0&1&1&1&1&1&0&1&1&1&1&1&0&1&1&1&0&1&1&0&0&0&0\\
+	\hline
+	1&1&1&1&0&0&1&1&1&1&1&0&1&0&1&1&1&0&0&0&0&0&1&1\\
+	1&1&1&0&0&1&1&1&1&1&0&1&0&1&1&1&0&1&0&0&0&1&1&0\\
+	1&1&1&0&1&0&1&1&1&0&1&1&1&1&0&0&1&1&0&0&0&1&0&1\\
+	\hline
+	\hline
+	0&1&1&1&1&1&1&1&1&1&0&0&1&0&1&0&0&0&1&0&1&1&1&0\\
+	1&1&0&1&1&1&1&1&1&0&0&1&0&1&1&0&0&0&0&1&1&1&0&1\\
+	1&0&1&1&1&1&1&1&1&0&1&0&1&1&0&0&0&0&1&1&0&0&1&1\\
+	\hline
+	1&1&1&1&1&0&1&0&0&1&1&1&0&0&0&0&1&1&1&1&0&0&1&1\\
+	1&1&1&1&0&1&0&0&1&1&1&1&0&0&0&1&1&0&1&0&1&1&1&0\\
+	1&1&1&0&1&1&0&1&0&1&1&1&0&0&0&1&0&1&0&1&1&1&0&1\\
+	\hline
+	\end{array}
+	$
+\end{center}
+\caption{The Matrix $B$.}
+\label{fig:fortyeightmatrixB}
+\end{figure}
+The matrix $B$ has been split into sixteen six by six submatrices indicated by the double black lines in figure \ref{fig:fortyeightmatrixB}, and each submatrix is further split into four three by three blocks indicated by the single black lines.
+We will refer to the rows of blocks as block rows and columns of blocks as block columns.
+Furthermore we will refer to the eight three-component subvectors of each row of $B$ (as dictated by the vertical black lines) as segments.
+The first twelve columns of $B$ will be referred to as the left-hand side of $B$ or LHS for short.
+Likewise, the last twelve will be referred to as the right-hand side of $B$ or RHS for short.
+
+Note that according to the listing, the first twenty-four rows of $W$ are labelled by the elements $b^{i-1}$ for $i$ from one to twenty-four.
+They thus form a generator matrix for a vector form of the code $\mathcal{C}$.
+The code they generate is equivalent to that generated by $G$ earlier in the chapter.
+Furthermore, the first row is that labelled by the identity $b^0$ of $\mathbf{D}_{48}$ and thus is that corresponding to $u$.
+As we showed in the previous section, if all of the combinations of three and four rows of the first twenty-four rows of $W$ that involve the first row are of weight greater than eight then the code $\mathcal{C}$ has minimum distance twelve.
+We will show this to be the case in the following sections.
+
+Note that just like in the case of $G$, the first twenty-four rows of $W$ are of the form $[I|B]$ with the twenty-four by twenty-four identity matrix as their left-most block.
+Thus to prove that each three-row combination of those twenty-four rows is of weight at greater than eight we need only show that each three-row combination of $B$ involving its first row is of weight greater than five.
+Likewise we need only show that each four-row combination of $B$ involving its first row is of weight greater than four.
+In a moment we will take the three and four row cases separately, proving each in turn.
+First we briefly mention some effects on the rows of $B$ of dih-cycling the rows in a combination of rows of $W$.
+
+\section{The Matrix $B$}
+We are really only interested in dih-cycling as far as its effects of the matrix $B$.
+We will only concern ourselves with a few facts about the situation.
+First of all the block rows of $B$ each contain three rows that are each eight or sixteen dih-cycles apart.
+This is thanks to the first twenty-four elements of the listing being $ \{ b^{ 0 } $, $ b^{ 8 } $, $ b^{ 16 } $, $ b^{ 4 } $, $ b^{ 12 } $, $ b^{ 20 } $, $ b^{ 2 } $, $ b^{ 10 } $, $ b^{ 18 } $, $ b^{ 6 } $, $ b^{ 14 } $, $ b^{ 22 } $, $ b^{ 1 } $, $ b^{ 9 } $, $ b^{ 17 } $, $ b^{ 5 } $, $ b^{ 13 } $, $ b^{ 21 } $, $ b^{ 3 } $, $ b^{ 11 } $, $ b^{ 19 } $, $ b^{ 7 } $, $ b^{ 15 } $, $ b^{ 23 } \}$.
+Of course if two rows are eight dih-cycles apart in the forwards direction then they are sixteen apart in the backwards direction.
+Thus if two rows are in the same block row we can dih-cycle them until they become the first two rows in that block row.
+All of the other rows in the other block rows remain in those block rows, though their order within those block rows will change in the same way.
+
+The second fact we wish to note is that if two rows are in the last four block rows of $B$ and we dih-cycle one of them into the first four block rows then the other row also gets dih-cycled into the first four block rows.
+The rows in the first four block rows correspond to the group ring elements of the form $b^i u$ where $i$ is zero or an even integer.
+The rows in the last four block rows correspond to those where $i$ is odd.
+Since the number of steps two rows are apart is preserved when both are dih-cycled by the same amount if both correspond to odd or even $i$ indices before dih-cycling then that will be true after dih-cycling.
+Likewise dih-cycling two rows where one of them is in the first four block rows and the other in the last four, will always result in one of the rows residing in the first four sub-block rows and the other in the last four.
+
+A third fact of note is regarding the first two block rows and the second two block rows of $B$.
+If one row is in the first block row of $B$ and another is in the second block row then dih-cycling will leave one of the rows in block row one and the other in block row two, or leave one in block row three and one in block row four, or leave one in block row five and one in six, or one in seven and one in eight.
+This is because these pairs of block rows are all of those containing rows that are four, twelve and twenty dih-cycle steps apart.
+Note that if we continuously dih-cycle the two rows they will visit each block row of $B$ eventually.
+We can now move on with the proof that no three-row combination of $B$ is of weight five.
+
+\section{Three Rows of $B$}
+We will split the task of proving that no three-row combination of $B$ is of weight five into three separate cases.
+The first is that all three-rows come from a single block row of $B$.
+The second is that two of the three rows do, and the third doesn't.
+Finally the third is that all three rows come from separate block rows.
+
+The first case is the easiest.
+If all three rows come from a single block row of $B$ we can assume that it's block row one.
+Every other three-row combination coming from a single block row can be dih-cycled until all three rows are contained in block row one.
+Sub-block row one contains two all ones blocks whose segments combine to give a weight three segment.
+Hence the combination of the three rows is of weight at least six and thus is not five.
+The other two cases are not so straight-forward, as we shall now see.
+
+\subsection{Two from a block row}
+We can assume that the two rows that are contained in a single block row are in block row one.
+Furthermore we can assume that they are rows one and two of $B$.
+This is all thanks to our ability to dih-cycle combinations of the rows of $B$.
+Of course the third row of the combination must also be dih-cycled by the same amount but that makes no difference, it is still contained in a separate block row.
+
+The combination of rows one and two of $B$ contains three weight zero segments arising from the two all ones blocks and the single all zeroes block.
+These are in block rows one, six and eight.
+The other segments are all of weight two, since they arise from the combination of two distinct weight two segments.
+
+The third row contains a single weight zero segment a single weight one segment, four weight two segments and two weight three segments.
+The three weight zero segments in the combination of rows one and two of $B$ thus contribute a weight of at least four to the three-row combination unless one of them combines with the weight zero segment of the third row, another combines with the weight one segment and the last combines with one of the weight two segments.
+We will use the weight zero segments in the combination of rows one and two to check if this ever happens.
+
+Sub-block column one only contains weight zero segments in block row one and we are only interested in the third row coming from a separate block row.
+Sub-block column six contains weight zero segments only in block row seven.
+In this case the other two weight-zero segments from rows one and two combine with weight two segments, thus contributing at least four to the weight of the overall three-row combination.
+Sub-block column eight contains weight zero sub-segments in block row five.
+Only in this case do the three weight zero segments only contribute three to the overall weight, with block column one only contributing weight one.
+We will return to this case in a moment.
+
+First we will discuss the combinations in block columns two, three and four.
+The segments in the combination of rows one and two of $B$ in these columns are both $(1,1,0)$, $(1,0,1)$ and $(1,1,0)$ respectively.
+When the third row is taken from one of block rows two to four then one of these is combined with a segment of weight zero in the third row contributing weight two to the overall three row combination.
+Combined with the fact that those combinations were already of weight at least four from block columns one, six and eight these combinations all have weight at least six.
+
+When the third row is taken from block rows five or seven two of these weight two segments combine with weight three segments in the third row.
+In the block row seven case the combinations are now all of weight at least six.
+In the block row five case we only have weight three coming form block columns one, six and eight so we now have these three-row combinations having at least weight five.
+Note that then block column three (which does not contain weight three segments in the third row) is always of weight two unless row fifteen of $B$ is used.
+In that case the segment of the three-row combination in column five is of weight two, giving these combinations a weight of at least six.
+
+Finally in the block rows six and eight cases one of the weight two segments combines with a weight three segment and another with a weight one segment.
+This again contributes at least weight two to a combination already of weight at least four.
+Hence all of the combinations in these cases are of weight at least six.
+We are left then only to discuss the case in which all three rows come from separate block rows.
+
+\subsection{All from separate block rows}
+We will split the case of three-row combinations from different block rows into two separate sub-cases.
+The first is that all three rows come from the first four block rows of $B$.
+The other case is that two of them come from the first four block rows of $B$ and the third comes from the last four.
+Note that the proof of the former of the two cases implies the proof for the situation in which all three rows come from separate blocks from the last four block rows.
+Furthermore the latter of the two cases implies the case in which two rows come from separate block rows in the last four block rows and the other row comes from the first four block rows.
+
+\subsubsection{All from one set of four}
+We can assume that the three rows come from the first three of these block rows.
+In the case that two of the rows are from block rows three and four, dih-cycling the rows backwards two steps will place those rows in block rows one and two.
+This is obvious from the fact that the three indices $i$ in the group ring elements $b^i u$ corresponding to the rows in each of the first four block rows in order are: $0$, $8$ and $16$; $4$, $12$ and $20$; $2$, $10$ and $18$; and $6$, $14$ and $22$.
+Thus we can assume two of the rows are from block rows one and two.
+
+Furthermore we can assume that the third row comes from block row three.
+If it is contained in block row four then dih-cycling all three rows backwards by four steps will place it in the third block row.
+This will switch the row in block row one to block row two and that in block row two to block row one.
+As always we can further assume that that from block row one is row one of $B$.
+Thus we only need check that all of the three-row combinations involving row one, one of the rows in block row two and one of the rows in block row three are of weight greater than five.
+
+In these cases the segment of the combination in block column six is always of weight one and that in block column seven is always of weight two.
+Furthermore that in block column two is always of weight two unless row seven of $B$ is used from block row three.
+That in block column five is always of weight two unless row nine of $B$ from block row three is used.
+Together these three facts show that the segments in column two, five, six and seven contribute at least weight five to the three row combination.
+If we can show that the other four segments, those in block columns one, three, four and eight are never all of weight zero then none of these combinations have weight five.
+The segment of the combination in block column four is always of weight two unless row five is used in block row two.
+In that case however the segment in block column three is always of weight two, since that segment is the combination of three weight two segments, two of which are equal.
+Thus no combination of three rows from distinct block rows from the top half of $B$ is of weight five, implying no such combination from the bottom half is.
+We move on now to the case where two of the rows come from the first or last four block rows and the other comes from the last or first four respectively.
+
+
+\subsubsection{Two from one set of four}
+We can assume that the second row of the combination is contained in block row two or block row four.
+If it is contained in block row three then dih-cycling the two rows so that the second row becomes row one of $B$ makes the other row become one of those in block row four.
+This is obvious by again looking at the indices of the rows of $B$: $0$ with $18$ becomes $6$ with $0$, $0$ with $10$ becomes $14$ with $0$ and $0$ with $2$ becomes $22$ with $0$.
+
+On the LHS of such combinations the four segments in the combination of the first two rows of the combination are all of weight zero or two.
+The third row always contains three odd-weighted segments and the segments of the three-row combination in those block columns are thus always of weight at least one.
+Thus the LHS of the combination is always of weight at least three.
+On the RHS the first two rows of the combination each contain a single weight two segment and three odd-weighted segments.
+The weight two segments never combine with each other since the two rows come from separate block rows.
+The third row only contains segments of weight zero and two.
+Thus there are two block columns containing segments of odd weight on the RHS of the three-row combination.
+In total every combination in this case of weight at least five.
+If we can show that the other three columns are never all of weight zero then we have proven this case.
+
+We now take the cases in which we use block row two and block row four separately.
+When we use block row two the even weighted segments of the combination on the RHS are in block columns five and six.
+That in block column five is only ever of weight zero if one of rows fifteen, sixteen and nineteen of $B$ is the third row.
+When any of those rows is the third row the segment in block columns six is of weight two.
+Thus those combinations are of weight at least seven.
+
+When the second row is in block row four the even-weighted segments on the RHS of the three-row combination are then in block columns five and eight.
+The segment in block column eight is always of weight two unless the third row comes from block row five.
+In this case the segment in block column five is always of weight two unless the third row is row fifteen of $B$.
+The third even-weighted segment of the combination is then contained in block column three.
+When row fifteen is used this is of weight two.
+Thus none of the combinations arising in this case are of weight less than seven.
+So we've seen that no combination involving three rows from a single block row of $B$, none involving exactly two from any single block row and no combination involving three rows from distinct block rows of $B$ are of weight five.
+This proves that in fact none are of weight less than nine, since as we've seen before $\mathcal{C}$ is a doubly even code.
+We now move on to the proof that no combination of four rows of $B$ is of weight four.
+
+\section{Four Rows of $B$}
+Like in the three rows proof, we separate the four rows proof into three distinct cases.
+First we take the case where three of the four rows come from a single block row.
+Second we take that case that two of the rows share a block row and the other two rows are not in that block row.
+Lastly we prove the case in which all of the rows come from distinct block rows.
+
+The first of these cases is proven easily.
+We are free to assume that one of the three rows sharing a block row is row one of $B$.
+In that case rows two and three of $B$ are involved in the four-row combination also.
+The LHS of the combination of these three rows consists of all zeroes.
+The LHS's of the other twenty-one rows of $B$ are all of weight six or greater.
+So when the fourth row is added to the combination the combination's LHS is of weight at least six.
+Hence no four-row combination of $B$ where three of the rows share a block row is of weight four.
+We now move on to the second and third cases, which are a little trickier.
+
+\subsection{Two from one block row}
+We split the case of two rows coming from a single block row into five distinct sub-cases.
+We always assume that these two rows are the first and second of $B$.
+If they are not we can always dih-cycle the combination until this becomes the case.
+The first sub-case is that the other two rows come from the same block row and that is one of block rows two to four.
+The second sub-case is that in which the other two rows come from the same block row and that is one of the block rows five to eight.
+Thirdly we examine the sub-case in which the third row comes from the block rows two to four, and the fourth row comes from block rows five to eight.
+The fourth sub-case is that in which the third and fourth rows come from distinct block rows in block rows two to four.
+Finally we examine the sub-case in which the third and fourth rows come from distinct block rows in block rows five to eight.
+
+\subsubsection{Two from one of block rows two to four}
+The LHS of the combination of two rows from the same block row from block rows two to four contains a single weight zero segment and three weight two segments.
+When two of these two-row combinations from distinct block rows are combined the weight zero segments are never combined with each other, so they each contribute two to the weight of the over-all four-row combination.
+The RHS of each combination of two rows from the same block row contains two weight zero segments and two weight two segments.
+When two such two-row combinations from distinct block rows are combined at least one of the weight zero segments in each of the two row combinations is not combined with another weight zero segment.
+Therefore such four-row combinations are again of weight at least four.
+Thus all of the four-row combinations in this sub-case are of weight at least eight.
+
+\subsubsection{Two from one of block rows five to eight}
+Again in this sub-case we look at the weight zero segments in each of the two-row combinations.
+The combination of the first two rows of $B$ contains a single weight zero segment in its LHS and two weight zero segments in its RHS.
+The combination of two rows from the same block row in the block rows five to eight contains two weight zero segments in its LHS and one in its RHS.
+All the other segments are of weight two.
+In the combinations from block rows five and seven the two weight zero segments on the LHS of those combinations are never contained in block column one, which is the block column in which that from the combination of rows one and two resides.
+Hence the LHS of those combinations is always of weight at least six.
+If a combination from block rows six or eight is used then the weight zero segment from the combination of rows one and two coincides with one of those in the other two-row combination, giving the LHS a weight of at least two.
+The RHS of the four-row combination however is of weight at least six if the rows come from block row six or eight and at least weight two otherwise, for the same reason.
+Thus all of the four-row combinations in this sub-case are of weight at least six.
+
+\subsection{One from two to four, one from five to eight}
+The segments in the combination of rows one and two of $B$ are all of weight zero or two.
+Those in the LHS of all of the rows in block rows two to four are also of weight zero or two.
+On the LHS of all of the rows in block rows five to eight however there are three odd-weight segments.
+Thus the LHS of a combination of four rows in this sub-case is of weight at least three.
+The RHS's of the rows in block rows two to four also contain three odd-weighted segments, while those in block rows five to eight contain only even weighted ones.
+Therefore the RHS of the four-row combinations in this sub-case are also of weight at least three.
+Thus these combinations all have weight at least six.
+
+\subsubsection{Distinct block rows two to four}
+The fifth segment of the combination of rows one and two of $B$ is of weight two.
+In the four-row combinations in this sub-case it is combined with either two segments of weight three or one of weight three and one of weight one.
+Thus the fifth segment of every four-row combination in this sub-case is of weight either one or two.
+The segments in the combination of rows one and two in block columns six and eight are zero.
+These are each combined with a weight one segment and a weight two, or a weight one with a weight three or a weight two with a weight three segment.
+Thus those segments of the four-row combination are always of weight at least one.
+Therefore the RHS of the combinations in this sub-case are always of weight at least three.
+Now notice that the RHS of four rows in the combination in this sub-case are all of the same odd weight.
+Thus the RHS of the combination is always of even weight.
+Hence the RHS is always of weight at least four.
+
+The LHS of these combinations is never of weight zero.
+When one of the rows involved is in block row two, the segments of the combination of this row with rows one and two of $B$ in block columns three and four are either both zero (when it's row four) or both two (otherwise).
+Whether the other row comes from block row three or four the segment of that row in one of those columns is of weight zero and the segment in the other column is of weight two.
+Thus at least one of those segments of the four-row combination is of weight two.
+When a row from block row two isn't used then one from block row three and one from block row four are used.
+The segments in block columns one and two in the combination of those two rows are both of weight zero or both of weight two.
+The first two segments in the combination of rows one and two of $B$ are of weight zero and two respectively.
+Thus when combined with the two segments from the other two rows, both of weight zero or both of weight two, at least one of the segments of the combination is of weight two.
+
+\subsubsection{Distinct block rows five to eight}
+The next sub-case for consideration is that in which rows one and two and combined with two rows from distinct block rows five to eight.
+There are six different ways to choose two block rows from four.
+We will investigate each of these individually.
+Note that there are exactly two odd-weighted segments in every such four-row combination arising from the two weight two segments, one in the LHS of each of the rows from the last four block rows.
+All of the other segments on the LHS of these rows are of odd weight and the four segments on the LHS of rows one and two are of weight two or zero.
+
+The first three of the six choices of block rows we will deal with are those involving block row five.
+In these situations the last segment of the four-row combination is always of weight two.
+The segment in block column one is of weight two when a row from either of block rows six or eight is chosen.
+When a row from block row seven is chosen then the segment in block column two is of weight two.
+Combined with the two odd-weighted segments these result in all of the combinations involving a row from block row five being of weight at least six.
+There are then three choices of block rows left to cover.
+When a row from block six and one from block row seven are involved in the combination then the segments of the combination in block columns three and six are always both of weight two.
+Thus those combinations are always of weight at least six.
+
+The case in which a row from each of block rows six and eight is involved is a little harder to see.
+In this case at least one of the segments of the combination in block columns six and eight is of weight two.
+The only way they can be zero is if the segments in the two rows in each of those columns are equal.
+It is evident that this never happens simultaneously in both block columns.
+The segment in block column three is of weight two unless row twenty-four of $B$ is involved, whereas that in block column seven is of weight two unless row twenty-three is involved.
+Thus at least one of the segments in those two columns is of weight two.
+Together with the two odd-weighted segments these combinations are thus all of weight at least six.
+
+Finally we come to the case in which a row from each of block rows seven and eight is involved.
+In this case the segment in block column six is always of weight two.
+The segment in block column four is of weight two unless row twenty is used, and that in block column five is of weight two unless row twenty-one is used.
+Thus at least one of those segments is of weight two, giving the overall combination a weight of at least six when the odd-weighted segments are considered.
+This concludes the proof that no combinations involving rows one and two and not row three of $B$ are not of weight four.
+We move on now to proving that no four-row combination of four rows from distinct block rows of $B$ is of weight four.
+
+\subsection{Distinct block rows}
+We also split the case in which all four rows come from distinct block rows into sub-cases.
+The first of these is that all four rows come from the first four block rows of $B$.
+This sub-case also proves the situation in which the four rows come from the last four block rows, since those combinations can be dih-cycled backwards one place and they become rows in the first four block rows.
+The second sub-case is that three come from the first four block rows and one comes from the last four.
+Again, this incorporates the case in which three of the rows come from the last four block rows and the other from the first four.
+The third and final sub-case is that two come from each of the first and last four block rows.
+
+The first sub-case is straight forward.
+The segments on the RHS of the four rows combination are all of odd weight so the RHS of the combination is of weight at least four.
+The segments on the LHS are only of weight zero if they are the combination of three weight-two segments that are all different.
+Thus the segment in block column is of weight two if row seven is involved in the combination, and that in block column three is of weight two if row eight is used.
+We must therefore use row nine from block row three if we are to get a four row combination of weight four.
+When we use row nine however, the segment in column five is of weight three and thus the combination has weight six anyway.
+Thus none of the combinations in this sub-case are of weight four.
+
+The second sub-case is also straight-forward.
+Here we can assume that three of the rows are contained in the block rows one, two and three.
+If they are not they can be dih-cycled to this position.
+The LHS of the fourth row contains three odd-weighted segments which when combined with the even-weighted segments of the first three rows give the LHS a weight of at least three.
+Furthermore the segment in block column six is of odd weight and thus the four-row combination has weight at least four.
+Now, the segment in block column seven is of weight zero only if the fourth row of the combination is one of rows fourteen, twenty and twenty-four.
+When the fourth row is row fourteen, the segment in block column five is of weight two unless the third row is row seven, in which case the segment in block column three is of weight two.
+When it's row twenty, the segment in block column five is of weight two unless the third row is row eight, in which case the segment in block column one is of weight two.
+Finally, if row twenty-four is involved, then the segment in column five is of weight two unless the third row is row nine, in which case the segment in block column eight is of weight two.
+Thus none of the combinations in this sub-case are of weight four.
+The final sub-case we will now examine is that in which two rows come from distinct block rows in the block rows one to four and the other two come from distinct block rows in the block rows five to eight.
+
+\subsubsection{Two from top, two from bottom}
+We come now to the last sub-case, that in which two rows come from block rows one to four and two come from block rows five to eight, all in separate block rows.
+We can reduce the number of possibilities by noticing that when row one of $B$ and a row from block row four are used, the combination is equivalent to a combination in which row one and a row from block row three are used.
+This is true since we can dih-cycle the row in the fourth block row back to the first row of $B$ and cycle the first row by the same amount in which case it becomes one of the rows in block row three: $b^0$ and $b^6$ become $b^{18}$ and $b^0$, $b^0$ and $b^{14}$ become $b^{10}$ and $b^0$ and $b^0$ and $b^0$ and $b^{22}$ become $b^2$ and $b^0$.
+
+Note that there are always four segments of the combinations in this sub-case that are of odd weight.
+These arise on the LHS thanks to each of the segments of weight two in the last two rows of the combination combining with an odd-weighted segments and two other even-weighted ones.
+Similarly on the RHS the weight two segments in each of the first two rows of the combination lead to odd-weighted segments in the combination.
+We thus need only show that the other four segments are not all of weight zero.
+
+We now simply work through the possibilities using block rows two and three.
+There are four choose two possibilities for two block rows from the last four, which is six.
+We investigate these six possibilities for each of block rows two and three.
+
+The first possibility using block row two that we check is that of block rows five and six.
+In this case the even-weighted segments are in block columns one, two, five and six.
+The segment in block column two is of weight two unless row eighteen of $B$ is used, in which case that in block column five is of weight two unless row thirteen is used.
+Then the segment in block column six is of weight two unless row five is used, in which case that in block column one is of weight two.
+
+When block rows five and seven are used then the even-weighted segments are in block columns two, four, five and six.
+That in block column two is always of weight two.
+
+In the case of block rows five and eight, the segments in block columns one, four, five and six are of even weight.
+That in block columns four is of weight two unless row five of $B$ is used.
+The segment in block column one is of weight two unless row fourteen in block row five is used, but then that in block column five is always of weight two.
+
+Using block rows six and seven the even-weighted segments are in block columns two, three, five and six.
+That in block column six is two unless row four of $B$ is used, in which case that in block column three is always of weight two.
+
+In the case of block rows six and eight the even weighted segments are in block columns one, three, five and six.
+That in block column one is always of weight two.
+
+Finally, for combinations involving a row from block row two, when block rows seven and eight are involved the even-weighted segments are in block columns three, four, five and six.
+That in block column five is of weight two unless row nineteen is involved in the combination, in which case that in block column four is of weight two unless row four is involved.
+In that case that in block column three is of weight two unless row twenty-three is used, in which case that in block column six is of weight two.
+
+We turn then to the cases involving a row from block row three.
+The first of these is that a row from each of block rows five and six is used.
+Note however, that we can cycle these two rows back so that one of them becomes the first row of $B$ and the other becomes one of those in block row two of $B$.
+Hence this case has already been covered.
+
+The next case is the one in which block rows five and seven are involved.
+In this case the even weighted segments are in block columns two, four, six and eight.
+That in block column six is always of weight two.
+
+The third case is that in which a row is used from each of block rows five and eight.
+The even weighted segments are in block columns one, four, six and eight.
+That in block column four is always of weight two.
+
+Fourth is the case that block rows six and seven are involved.
+The even-weighted segments are in block columns two, three, six and eight.
+That in block column two is of weight two unless row eighteen of $B$ is used, in which case that in block column three is of weight two unless row five is used.
+Then that in block column eight is of weight two.
+
+Next is the case in which block rows six and eight are involved.
+The even-weighted segments are in block columns one, three, six and eight.
+That in block column one is always of weight two.
+
+Finally comes the case in which a row from each of block rows seven and eight are used.
+Like in the first case, however such combinations can be dih-cycled to a case in which these two rows reside in block rows one and two.
+Therefore, this case has already been covered.
+
+Thus none of the combinations involving four rows from different block rows are of weight four.
+This completes the proof that no combination of four rows of $B$ is of weight four.
+The minimum distance of $\mathcal{C}$ is thus twelve.
+
+\section*{Conclusion}
+In this chapter we have seen that the $(48,24,12)$ extremal type II code can be constructed from a zero divisor in a group ring.
+The group ring in question is $\mathbb{Z}_2 \mathbf{D}_{48}$, the dihedral group of order forty-eight over the finite field with two elements.
+We proved algebraically that the code is of dimension twelve, self-dual, doubly-even and can be generated as quasi cyclic of index two by a reverse circulant generator matrix.
+Most importantly we algebraically proved that the code is of minimum distance twelve.
+
+In conjunction with the construction of the $(24,12,8)$ extended binary Golay code in the previous chapter the construction of the $(48,24,12)$ code here suggests that, in general, codes constructed in this way using zero divisors in dihedral group rings are quite good.
+In the next chapter we thus deal with more general constructions of such codes in dihedral group rings.
+Most interesting among the codes constructed in the chapter are the $(72,36,12)$ and $(96,48,16)$ type II codes.
+They are the best known type II codes of their lengths, and the existence of longer type II codes of their lengths is a famous open problem in coding theory.

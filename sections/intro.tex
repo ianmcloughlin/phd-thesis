@@ -1,0 +1,848 @@
+%!TEX root = ../thesis.tex
+\chapter{Introduction}
+\label{chap:intro}
+Algebra has played an important role in the study and construction of error correcting codes to date.
+In this chapter we give some background information concerning this role.
+Throughout the chapter the algebraic structures relevant to the study are defined.
+The goal is to facilitate the discussion of codes in subsequent chapters.
+First we outline here the course that this discussion will take.
+
+All of the codes in this thesis will be constructed using group rings.
+Ted and Paul Hurley published new methods for constructing codes using group rings in 2007 and 2009~\cite{hur07,hur09}.
+Different methods are given for two types of group ring elements: zero divisors and units.
+We use those methods pertaining to zero divisors in this thesis.
+
+The focus of earlier efforts to construct codes in group rings was on ideals~\cite[p.~829]{han98a},\cite{hug00}.
+All of the codes in this thesis will be ideals in their respective group rings.
+It should be noted however that in Hurley and Hurley's paper the construction techniques are not limited to ideals.
+Codes are defined more generally in terms of modules.
+They are ideals only under the conditions given there.
+
+The first two codes dealt with in this thesis are the extended binary Golay code and the $(48,24,12)$ type II code.
+Both of these have been constructed previously.
+It has been known that the extended binary Golay code can be constructed as an ideal in a group algebra since 1990~\cite{lan90}.
+There the code is constructed as an ideal in a group ring over the symmetric group of order twenty-four.
+Earlier the construction of the extended binary Golay code was detailed by Florence MacWilliams in her book with Neil Sloane, first published in 1977~\cite[p.~634]{mac77}.
+In that book a generator matrix for the code is given that is doubly circulant~\cite[p.~498]{mac77}.
+Later in this thesis we will see that the new constructions yield reverse circulant generator matrices.
+
+Doubly circulant codes have received a good deal of coverage in the literature.
+Richard Jenson publised results in 1980 regarding the construction of quadratic residue codes by doubly circulant generator matrices~\cite{jen80}.
+He found the construction of such codes to be not always be possible using his methods.
+Mona Musa published results in 2008 proving that certain extended quadratic residue codes could be constructed from double circulant matrices~\cite{mus08}.
+T. Aaron Gulliver gave a classification of the double circulant self-dual codes of small lengths in a paper in 1998~\cite{gul98}.
+Vera Pless in the Handbook of Coding Theory states that some quasi-cyclic codes are equivalent to double circulant codes~\cite[p.~60]{han98a}.
+Those given in this thesis are quasi-cyclic of index two.
+Quasi-cyclic codes have received much attention in the literature right up to the present.
+The emphasis has been on quasi-cyclic low-density parity check codes.
+
+While the codes given in this thesis are not necessarily low-density parity check codes they admit to another composition of interest.
+They are binary codes that are both self-dual and doubly even.
+Such codes are termed type II codes~\cite[p.~96]{han98a}.
+The extended binary Golay and Type II $(48,24,12)$ codes constructed in this thesis are both \emph{extremal} type II codes.
+A type II code is called extremal if its minimum distance is $4 \lfloor n / 24 \rfloor + 4$ where $n$ is the code's length~\cite[p.~270]{han98a}.
+Type II codes are never cyclic~\cite{slo83} and thus can not be constructed as polynomial codes.
+The constructions given here though, for the type II codes, are very similar to the construction of cyclic codes from polynomials.
+
+There have been numerous calls for further investigation into the existence of longer extremal type II codes.
+Special interest is given to those of length a multiple of twenty-four as out of all extremal type II codes they achieve the greatest minimum distance compared to their lengths.
+Their existence has been neither proved nor disproved for lengths as small as seventy-two and ninety-six~\cite{kim08}.
+
+We begin now by discussing some of the fundamental concepts on which the rest of the thesis is based.
+We begin with the definitions pertaining to the subject generally referred to as \emph{abstract algebra}.
+We are then able to move on to those in the realm of coding theory.
+
+
+\section{Groups, Rings and Fields}
+We assume that the reader is familiar with the definitions of the terms `group' and `ring' from abstract algebra.
+These are defined in any standard textbook on the subject, such as Birkhoff and MacLane's book ``Algebra''~\cite[p.~43]{mac99}.
+It is also assumed that the reader is generally acquainted with the basic concepts associated with groups and rings.
+
+Within group theory we will be discussing subgroups, the order of a group, the order of a group element, commutative and non-commutative groups.
+We expect the reader knows what a cyclic group is, though other groups that are discussed in the thesis are defined.
+We use the standard notation $G = \langle \textrm{generators} \mid \textrm{relations} \rangle$ to define and denote a group $G$ where `generators' is a list of generators of the group and `relations' is a list of combinations of the generators that are equal to the identity of the group.
+Only finite groups will be discussed.
+
+In the realm of ring theory we also expect that the reader is familiar with the common definitions appropriate to the subject.
+These are the ideas of multiplicative identities, units, ring commutivity, fields, finite fields, ideals and principal ideals.
+The smallest field, the finite field with two elements, is denoted in this text by $\mathbb{Z}_2$.
+
+There is one peculiar property a non-zero element in a ring may have that the reader may not be familiar with.
+A non-zero ring element may multiply with another non-zero ring element to produce zero.
+These elements are called \emph{zero divisors} and we will use them extensively throughout this text.
+
+We will now move on and define some of the concepts in the subject of \emph{linear algebra}.
+While the reader is likely knowledgeable of these ideas, the way they are developed here facilitates lesser known definitions later in the chapter.
+The main structure we want to define is that of a vector space.
+
+\section{Vector Spaces and Modules}
+We now define the term `module' which aids in our later definition of the term `vector space'.
+Let~$R(+,\times)$ be a ring and let~$G(\circ)$ be a commutative group.
+The group~$G$ is called a \emph{left~$R$-module}~\cite[p.]{mac99} under an operation~$\cdot:R \times G \rightarrow G$ when the following axioms are satisfied:
+\begin{enumerate}
+	\item For every pair of elements~$r_1$ and $r_2$ in $R$ and every element~$g$ in $G$: $(r_1 + r_2) \cdot g = (r_1 \cdot g) + (r_2 \cdot g)$.
+	\item For every pair of elements~$g_1$ and $g_2$ in $G$ and every element~$r$ in $R$: $r \cdot (g_1 \circ g_2) = ( r \cdot g_1 ) \circ ( r \cdot g_2)$.
+	\item For every pair of elements~$r_1$ and $r_2$ in $R$ and every element~$g$ in $G$: $(r_1 \times r_2) \cdot g  = r_1 \cdot (r_2 \cdot g)$.
+	\item For every~$g$ in $G$ and the multiplicative identity~$1$ in $R$: $1 \cdot g = g$.
+\end{enumerate}
+A module is called a \emph{right~$R$-module} if it satisfies the same axioms except with an operation~$\cdot:G \times R \rightarrow G$ with the relevant changes to the order of the group and ring elements in the four axioms.
+
+A \emph{vector space} is defined as a module over a field~\cite[p.~193]{mac99}.
+We will later define codes in terms of vector spaces.
+They will be defined as subspaces of vector spaces.
+Subspaces are special subsets of vector spaces and we define them now in the next section.
+
+\subsection{Subspaces, Basis and Dimension}
+A \emph{subspace} of a vector space is a submodule of it~\cite[p.~78]{mil02}. 
+A non-empty subset~$W$ of an $R$-module is called an $R$-submodule~\cite[p.~78]{mil02}, or simply a submodule, when the following two axioms are satisfied:
+\begin{enumerate}
+	\item For every pair of subset elements~$w_1$ and $w_2$ in $W$: $w_1 + w_2$ is in $W$.
+	\item For every ring element~$r$ in $R$ and every~$w$ in $W$: $r \times w$ is in $W$.
+\end{enumerate}
+
+Subspaces are not the only interesting subsets of vector spaces.
+A \emph{basis} (plural: \emph{bases}) of a vector space~$V$ is a subset of vectors in~$V$ that is linearly independent and spans the vector space.
+One thing that every basis of a given (finitely generated) vector space has in common is that they all have the same number of elements in them.
+This number of elements is called the \emph{dimension} of the vector space.
+
+Now that we have discussed some basic algebra we are in a position to discuss linear block codes.
+The rest of this chapter and indeed the rest of this thesis will be dedicated to their study.
+
+\section{Linear Block Codes}
+\label{sect:linearblockcodes}
+In this text the only codes we will concern ourselves with are linear block codes.
+We will simply refer to them as codes.
+An~$(n,k)$ linear block code is a $k$-dimensional subspace of the vector space~$\mathbb{F}^n$ of all $n$-tuples of and over a finite field~$\mathbb{F}$~\cite[p.~3]{huf03}.
+We denote such a subspace by $\mathcal{C}$ and refer to its elements as \emph{codewords}.
+The term `block' refers to the fact that each codeword has the same number of components.
+The word `linear' refers to the fact that the code is closed under the operation of taking linear combinations of codewords over the field~$\mathbb{F}$.
+This is a consequence of the code being a subspace.
+The positive integer~$n$ is called the \emph{length} of the code and the positive integer~$k$ is called the \emph{dimension} of the code.
+
+Throughout this text we will use the field $\mathbb{F} = \mathbb{F}_2 = \mathbb{Z}_2$, the finite field with two elements.
+A code whose underlying field is $\mathbb{Z}_2$ is called a \emph{binary code}.
+The usual way to denote a typical element of $\mathbb{F}^n$ is $(a_1,a_2,\ldots,a_n)$ where $a_i$ is an element of $\mathbb{F}$ for all $i$ and $\mathbb{F}$ is an arbitrary field.
+When using $\mathbb{Z}_2$ it is more common to omit the brackets and comma separators and to simply write $a_1 a_2 \ldots a_n$.
+In either notation the elements~$a_i$ are referred to as \emph{components} of the codeword.
+The vector~$a_1 a_2 \ldots a_n$ should not be confused with the similarly denoted binary number of many bits; addition in the code is always done component-wise and there is no carrying.
+It is quite common to also talk of the components of a code (as opposed to those of a codeword) and denote them using the same symbols.
+A component of a code is the placeholder in which the components of the codewords lie.
+
+An example of a code is the span of the basis~$S=\{1000111,$ $0100011,$ $0010101,$ $0001110\}$ in $\mathbb{Z}_2^7$.
+It is a code of length seven since each codeword has seven components.
+There are four elements in its basis and so the dimension of the subspace, and hence the code, is four.
+Therefore the subspace is a $(7,4)$ linear block code.
+It is in fact a well known code known as the Hamming~$(7,4)$ linear block code.
+This code is interesting because it has the best minimum distance for a binary code of its length and dimension.
+Minimum distance is a term defined in the next section.
+
+\subsection{Minimum Distance}
+The term minimum distance generally refers to a code's minimum Hamming distance.
+The \emph{Hamming distance} between two codewords in a code is the number of components in which the two differ.
+We will refer to this as simply the \emph{distance} between two codewords.
+For example the distance between the codewords $1000111$ and $0100011$ is three since they differ only in the first, second and fifth components.
+
+The minimum of all of the distances between the distinct codewords of a code is called the \emph{minimum distance} of the code.
+It is an extremely important parameter of a linear block code, as it is the one that determines the error-correcting capability of the code~\cite[p.~8]{huf03}.
+The minimum distance of a code is notoriously difficult to calculate in general for large codes.
+This is unfortunate as much of coding theory is concerned with finding codes of large minimum distance for given values of $n$ and $k$.
+After determination of its minimum distance $d$ an $(n,k)$ linear block code is called an $(n,k,d)$ linear block code.
+
+Closely related to the concept of distance is that of weight.
+The \emph{weight} of a codeword is the number of non-zero components it has.
+For a linear block code the minimum of the weights of all of the non-zero codewords is equal to its minimum distance~\cite[p.~8]{huf03}.
+In general for both binary and non-binary linear block codes the distance between two codewords~$c_1$ and $c_2$ is equal to the weight of the codeword~$c_1 - c_2$.
+In a binary code the distance is simply equal to the weight of the codeword~$c_1 + c_2$ since component-wise addition and subtraction are equivalent.
+
+The fact that the minimum distance equals the weight of one of the codewords reduces the complexity of calculating the minimum distance of a linear block code.
+This has helped make linear block codes one of the most studied types of code.
+Furthermore the ability for linear block codes to be succinctly described by matrices has aided their prevalence.
+In the next section we look at linear block codes in terms of matrices.
+
+\subsection{Generator Matrices}
+\label{sect:generatormatrices}
+The most common way to describe a code is by its generator matrix.
+A \emph{generator matrix} of an $(n,k)$ linear block code is a $k$ by $n$ matrix whose rows are codewords that form a basis for the code over the scalar field~$\mathbb{F}$ of the vector space.
+We can generate all of the codewords of a code by taking all of the combinations of the generator matrix rows.
+There may be many generator matrices for the same code but the most common forms of generator matrix are the ones in which the $k$ by $k$ identity matrix appears in the very left hand side.
+Such a generator matrix is said to be in \emph{standard form}.
+An example of a standard form generator matrix for the Hamming~$(7,4,3)$ code is given in figure \ref{fig:standardhamming}.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{ccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 1 & 1 & 0
+\end{array} \right] \]
+\caption{A Hamming $(7,4,3)$ code generator matrix.}
+\label{fig:standardhamming}
+\end{center}
+\end{figure}
+This is simply the basis vectors given in section \ref{sect:linearblockcodes} for the code placed as the rows of a matrix.
+
+In coding theory we are interested in the null space of a generator matrix.
+The null space of a generator matrix has a special name.
+It's called the dual code of the code.
+It is discussed in the next section.
+
+\section{Dual Codes}
+\label{sect:dualcode}
+The \emph{dual code} of a linear block code~$\mathcal{C}$ in $\mathbb{F}^n$ is the set of vectors in $\mathbb{F}^n$ that are orthogonal to all of the codewords in $\mathcal{C}$~\cite[p.~26]{mac77}.
+Two vectors in~$\mathbb{F}^n$ are said to be \emph{orthogonal} if and only if their dot product is zero.
+The \emph{dot product} of two vectors~$\underline{x}$ and $\underline{y}$ in $\mathbb{F}^n$ denoted as $\underline{x} \cdot \underline{y}$ is the scalar:
+\[ \underline{x} \cdot \underline{y} = \sum_{i=1}^{n} x_i y_i \]
+where $x_i$ is the $i^{\textrm{th}}$ component of $\underline{x}$ and $y_i$ that of $\underline{y}$.
+The dual code of a code is therefore the null space of any generator matrix of the code.
+
+A code's dual code is closely related to its check matrix.
+A \emph{check matrix} for a linear block code~$\mathcal{C}$ of length $n$ and dimension $k$ over a field~$\mathbb{F}$ is an $(n-k)$ by $n$ matrix~$H$ such that $\mathcal{C} = \{ \underline{x} \in \mathbb{F}^n \mid H \underline{x}^{\textrm{T}} \} = \underline{0}$ whose rank is equal to $n-k$.
+The rows of $H$ generate the null space of any generator matrix of a code and its rank is~$n-k$.
+
+Interestingly the dual code of a code can contain the code itself.
+Such codes are called \emph{self-orthogonal} codes~\cite[p.~6]{huf03}.
+If the dual is exactly the code itself then the code is called \emph{self-dual}~\cite[p.~6]{huf03}.
+Codes that are self-dual are of even length and their dimension is half that length~\cite[p.~6]{huf03}.
+Their generator matrix serves also as their check matrix.
+The codes we construct in later chapters will all be self-dual.
+
+Now that we have discussed how codes are usually defined we move on to discussing when two codes are considered to be the same.
+
+
+\section{Equivalent Codes}
+\label{sect:equivcodes}
+Two linear block codes are said to be \emph{equivalent} if they differ only in the order of their components~\cite[p.~24]{mac77}.
+In other words there is some permutation of components that maps one of the codes to the other.
+Equivalent codes have the same length, dimension and minimum distance~\cite[p.~20]{huf03}.
+They are generally regarded as being the same code, though they do not necessarily contain the same codewords.
+Of course permuting the components of the code can be achieved by permuting the columns of its generator matrix.
+Hence two codes generated by two matrices that are merely column permutations of each other are equivalent, though codes can still be equivalent if their given generator matrices are not column permutations of each other.
+Interestingly some permutations of code components leave the code exactly the same.
+These permutations are discussed in the next section.
+
+\subsection{Automorphism Groups}
+The set of all possible permutations of a code's components forms a group under the usual operation of permutation composition.
+This group is called the symmetric group on $n$ points denoted~$S_n$.
+The elements of this group that preserve the codewords contained in the code are of particular interest.
+Together they form a subgroup.
+This subgroup is called the \emph{permutation automorphism group} or simply the \emph{automorphism group} of the code~\cite[p.~22]{huf03}.
+The elements of the automorphism group are called automorphisms of the code.
+Thus an automorphism is not just a permutation of the components of the code but a component permutation that preserves which vectors are codewords.
+
+While all of the properties of a code are preserved by an automorphism, many properties are not preserved by general equivalence of codes.
+An important property that is not preserved is the cyclic property which is discussed in the following section.
+
+\section{Cyclic Codes}
+\label{sect:cycliccodes}
+A \emph{cyclic code} is a linear block code for which every cyclic shift of a codeword is also a codeword.
+The $j^{\textrm{th}}$ \emph{cyclic shift} of a codeword of length~$n$ is the word obtained by replacing each $i^{\textrm{th}}$ component of the codeword with its $(i+j)^{\textrm{th}}$ component modulo $n$ for $j$ an integer.
+Thus the first cyclic shift of the codeword~$0001110$ is $0000111$, and the second is $1000011$.
+The Hamming~$(7,4,3)$ code as generated by the matrix in figure \ref{fig:standardhamming} is not a cyclic code.
+An equivalent code generated by the matrix in figure \ref{fig:equivhamming} is cyclic.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{ccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0 & 1
+\end{array} \right] \]
+\caption{A Hamming $(7,4,3)$ cyclic-code generator matrix.}
+\label{fig:equivhamming}
+\end{center}
+\end{figure}
+
+A generalisation of the cyclic property of a code is the quasi cyclic property.
+A \emph{quasi-$l$ cyclic code}, for $l$ a positive integer, is a code for which the $l^{\textrm{th}}$ cyclic shift of a codeword is also a codeword, and $l$ is the least such integer.
+Obviously $l$ divides the length of a quasi-$l$ cyclic code.
+Sometimes we say a quasi-$l$ cyclic code is a quasi cyclic code of \emph{index}~$n/l$.
+
+Both cyclic and quasi-cyclic codes have received much attention in the literature.
+We will now focus on the former, highlighting their fruitful algebraic structure.
+They are precisely the ideals of certain rings discussed in the following two sections.
+
+\subsection{Polynomial Rings}
+Cyclic codes are ideals in certain residue class rings of polynomial rings.
+We now explain what this means.
+The \emph{polynomial ring}~$\mathbb{F}[x]$ of the indeterminate~$x$ over the field~$\mathbb{F}(+,\times)$ is the set of all elements of the form $\sum_i a_i x^i$ where $a_i$ is an element of~$\mathbb{F}$, $x^i$ is the~$i^{\textrm{th}}$ power of $x$ and where all but a finite number of the $a_i$ are non-zero.
+The elements of a polynomial ring are called polynomials.
+The field element~$a_i$ is called the coefficient of the~$i^{\textrm{th}}$ power of $x$, $x^i$.
+Together the coefficient and the power of $x$, $a_i x^i$ are called a term of the polynomial.
+The \emph{degree} of a non-zero polynomial~$g(x)$ is the exponent of the highest power of $x$ with non-zero coefficient and we denote it as $\textrm{deg}(g(x))$ or simply $\textrm{deg}(g)$
+
+We extend the addition and multiplication of $\mathbb{F}(+,\times)$ to the polynomial ring in following ways:
+\begin{align*}
+	\textrm{\textbf{Addition:}} \qquad \displaystyle &\sum_i a_i x^i + \sum_i b_i x^i = \sum_i (a_i + b_i ) x^i\\
+	\textrm{\textbf{Multiplication:}} \qquad \displaystyle &\sum_i a_i x^i \times \sum_i b_j x^j = \sum_{i,j} (a_i \times b_j) x^{i+j}
+\end{align*}
+where $a_i$, $b_i$ and $b_j$ are elements of $\mathbb{F}$.
+Under these two operations the polynomial ring, as its name suggests, is a ring~\cite[p.~109]{mac99}.
+As an example of a polynomial in a polynomial ring we can take the element~$g(x) = 1 + x + x^3$ in the ring~$\mathbb{Z}_2 [x]$.
+This polynomial is of degree three as the highest power of $x$ with non-zero coefficient is three.
+Now that we have defined the term `polynomial ring' we can explain what we mean by a residue class ring.
+
+\subsection{Residue Class Rings}
+Let us now define a new kind of ring, one that is useful and interesting with respect to cyclic codes.
+We start with a polynomial ring~$\mathbb{F}[x]$ over a field~$\mathbb{F}$.
+We then form the set of \emph{residue classes} $\mathbb{F}[x] / \langle x^n-1 \rangle = \{ q + \langle x^n-1 \rangle | q \in \mathbb{F}[x] \}$, for some positive integer $n$, where $\langle x^n-1 \rangle$ denotes the principal ideal generated by $x^n - 1$ in $\mathbb{F}[x]$.
+This set forms a ring under the operations $(q_1 + \langle x^n - 1 \rangle) + (q_2 + \langle x^n - 1 \rangle) = ( q_1 + q_2 ) + \langle x^n - 1 \rangle$ for addition and $(q_1 + \langle x^n - 1 \rangle) \times (q_2 + \langle x^n - 1 \rangle) = ( q_1 \times q_2 ) + \langle x^n - 1 \rangle$ for multiplication~\cite[p.~96]{mac99}\footnote{In this reference the synonymous term `quotient ring' is used instead of `residue class ring'.}.
+This new ring is called the \emph{residue class ring} of the polynomial ring~$\mathbb{F}[x]$ and the principal ideal~$ \langle x^n-1 \rangle$.
+
+A cyclic code of length $n$ is an ideal of this residue class ring~\cite[p.~126]{huf03}.
+This ideal is a principal ideal generated by the unique monic polynomial expression~$g(x)$ of least degree contained in the ring~\cite[p.~125]{huf03}.
+A monic polynomial is one in which the highest power of $x$ with non-zero coefficient has one as its coefficient.
+It can be shown that in fact the generator polynomial $g(x)$ is a factor of $x^n - 1$~\cite[p.~126]{huf03}.
+This fact is useful in classifying the cyclic codes of a given length over a given field.
+
+As an example we will again take the cyclic Hamming (7,4,3) binary code.
+The code is an ideal in the residue class ring~$\mathbb{Z}_2[x] /  \langle x^7 - 1 \rangle $.
+It is generated by the element~$g(x) = 1 + x + x^3$.
+Thus the code is the set~$\mathcal{C}_x = (1 + x + x^3) ( \mathbb{Z}_2[x] / \langle x^7 - 1 \rangle )$.
+Obviously the codewords in this form are polynomials.
+There is a bijective correspondence between the polynomials of degree less than $n$ over a field $\mathbb{F}$ and the vector space $\mathbb{F}^n$ of $n$-tuples over a field $\mathbb{F}$.
+Take the polynomial codeword $1 + x + x^3$ of $\mathcal{C}_x$.
+It corresponds to the vector codeword given by the combination of the first, second and fourth rows from the generator matrix given in section \ref{sect:cycliccodes}.
+This vector codeword is $1101000$, which is simply the coefficients of the codeword polynomial $1 + x + x^3$ written in order from $x^0$ to $x^6$.
+Thus the codeword polynomial $a_0(1) + a_1(x) + a_2(x^2) + a_3 ( x^3 ) + a_4 ( x^4 ) + a_5 ( x^5 ) + a_6 ( x^6 )$ becomes $a_0 a_1 a_2 a_3 a_4 a_5 a_6$ in vector codeword form.
+We can create a generator matrix for a code from a generator polynomial of degree $\textrm{deg}(g(x))$ by taking the first $n-\textrm{deg}(g(x))$ cycles of the generator polynomial in vector form and using these as the rows of the generator matrix.
+
+Unfortunately linear block codes that are not cyclic are not ideals in such residue class rings.
+Some may be equivalent to cyclic codes but others are certainly not\footnote{See section \ref{sect:notcyclic}}.
+In subsequent chapters we construct codes that are not cyclic but are ideals in group rings over dihedral groups.
+We will first explain the construction of cyclic codes in terms of group rings.
+The codes are constructed as ideals in group rings over cyclic groups and the product of the construction bares striking resemblance to that just given.
+We start by defining the term `group ring'.
+
+\section{Group Rings}
+The main point of reference for the theory of group rings given here is the book ``An Introduction to Group Rings'' by Milies and Sehgal~\cite{mil02}.
+Let $R$ be a ring and $G$ be a group.
+The set of all formal linear combinations over $R$ of the elements in $G$ is a ring under the following operations:
+\begin{align*}
+\textrm{\textbf{Addition:}} \qquad \displaystyle &u {\bf +} v = \sum_{g \in G} a_g g {\bf +} \sum_{g \in G} b_g g = \sum_{g \in G} ( a_g + b_g ) g\\
+\textrm{\textbf{Multiplication:}} \qquad \displaystyle &u {\bf \times} v = \sum_{g \in G} a_g g {\bf \times} \sum_{h \in G} b_h h = \sum_{g,h \in G} ( a_g \times b_h ) gh
+\end{align*}
+where $\alpha_g, \beta_g$ and $\beta_h$ are elements of $R$.
+It is stipulated that the ``support'' of each group ring element is a finite set.
+The \emph{support} of an element $\sum \alpha_g g$ is the set of its non-zero coefficients $\{ \alpha_g | \alpha_g \neq 0 \}$.
+
+This ring is denoted as $RG$ and it is called the group ring of the group $G$ over the ring $R$~\cite[p.~131]{mil02}.
+The ring element $\alpha_g$ in a group ring element $u = \sum_g \alpha_g g$ is called the coefficient of $g$.
+When the ring $R$ contains a multiplicative identity a copy of $G$ exists in the group ring.
+This is the set of group ring elements $1g$ for $g \in G$.
+The elements in this copy of $G$ form a basis for the group ring over $R$ since all of the elements are by definition formal linear combinations of the group elements.
+The group $RG(+)$ is in fact an $R$-module with basis $G$.
+When $R$ is a field the group ring is a vector space over $R$, again with basis $G$.
+
+As an example we form the group ring ${\mathbb Z}_2 {\mathbf C}_7$ of the cyclic group with seven elements over the finite field with two elements.
+It consists of elements such as $ u = 1 g^0 + 0 g^1 + 0 g^2 + 1 g^3 + 1 g^4 + 0 g^5 + 0 g^6$, usually written as $1 + g^3 + g^4$.
+The addition and multiplication of group ring elements is governed by the group elements.
+Adding the elements  $1 + g^3 + g^4$ and $1 + g^2$ produces the element $g^2 + g^3 + g^4$.
+Furthermore multiplying those same elements gives $1 + g^2 + g^3 + g^5 + g^4 + g^6$.
+Group rings involving finite cyclic groups are discussed in more detail in the next section.
+
+\subsection{Cyclic Group Rings}
+\label{sect:cyclicrgs}
+Group rings in which the group is a finite cyclic group have already been discussed but under a different guise.
+A group ring in which the ring is a field $\mathbb{F}$ and the group is the infinite cyclic group is actually the ring of polynomials over the field $\mathbb{F}$.
+In this case the group ring addition and multiplication are exactly the usual addition and multiplication defined for polynomials.
+In the group ring it is the elements of the group that determine the multiplication just as the powers of $x$ do in a polynomial.
+
+In the case of finite cyclic groups the group ring $\mathbb{F} \mathbf{C}_n$ of the finite cyclic group $\mathbf{C}_n$ over the field $\mathbb{F}$ is isomorphic to the residue class ring of the principal ideal generated by the polynomial $x^n-1$ in the polynomial ring over $\mathbb{F}$.
+In the residue class ring the class of $x^n-1$ is the zero of the ring thus giving $x^n - 1 =0$, or $x^n = 1$.
+This is analogous to the finite cyclic group relation $g^n = 1$.
+
+For example the group ring of the finite field with two elements $\mathbb{Z}_2$ and the cyclic group $\mathbf{C}_7 = \langle g \mid g^7\rangle$ of order seven is isomorphic to the residue class ring $\mathbb{Z}_2[x] / \langle x^7 - 1 \rangle$.
+The element $a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + a_5 x^5 + a_6 x^6$ in the latter corresponds to the group ring element $a_0 + a_1 g + a_2 g^2 + a_3 g^3 + a_4 g^4 + a_5 g^5 + a_6 g^6$.
+
+Now that we have defined what a group ring is we can move on and define codes in terms of group rings.
+We start by defining, for any given group ring, a certain ring of matrices that is isomorphic to the group ring itself.
+
+\section{Matrices from Group Rings}
+In the following sections we define two types of matrix.
+The first type of matrix is called a group matrix.
+A group matrix has entries that are group elements.
+Group matrices facilitate the creation of the second type of matrix.
+Matrices of the second type have ring elements as entries and are called group ring matrices.
+Later we will use group ring matrices to create generator matrices for codes we construct.
+
+\subsection{Group Matrices}
+Group matrices are given relative to listings of group elements.
+A \emph{listing} of a group is an ordering of the group elements.
+Thus $\{1,$ $g,$ $g^2,$ $g^3,$ $g^4,$ $g^5,$ $g^6\}$ and $\{g,$ $1,$ $g^3,$ $g^2,$ $g^5,$ $g^4,$ $g^6\}$ are two distinct listings of the cyclic group of order seven.
+The idea of a listing is implied in the case of cyclic codes where a polynomial codeword $a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 + x^4 + a_5 x^5 + a_6 x^6$ is associated with the vector codeword $a_0 a_1 a_2 a_3 a_4 a_5 a_6$.
+In associating the codeword polynomial with the codeword vector we have effectively defined a listing of the powers of $x$ and taken the coefficients of those elements in that order.
+Fixing a listing of the group elements in the underlying group of a group ring allows us to associate component vectors with group ring elements in a similar manner.
+
+Listings play an important role in group matrices.
+The \emph{group matrix} or \emph{$G$-matrix} of a group $G$ under the listing $\{g_1,g_2,\ldots,g_n\}$ is the $n$ by $n$ matrix in which the entry in the $i^{\textrm{th}}$ row and $j^{\textrm{th}}$ column is $g_i^{-1} g_j$.
+The group matrix of the above listing is displayed in figure \ref{fig:groupmatrix}.
+\begin{figure}[htbp]
+\begin{center}		
+$\left[\begin{array}{lllll}
+{g_1^{-1}g_1} & {g_1^{-1}g_2} & {g_1^{-1}g_3} 
+ &  \ldots & {g_1^{-1}g_n} \\
+
+{g_2^{-1}g_1} & {g_2^{-1}g_2} & {g_2^{-1}g_3} 
+ &  \ldots & {g_2^{-1}g_n} \\ 
+
+\vdots & \vdots & \vdots &\ddots &\vdots \\
+
+{g_n^{-1}g_1} & {g_n^{-1}g_2} &{g_n^{-1}g_3} 
+ &  \ldots & {g_n^{-1}g_n} 
+%\ldots & \ldots & \ldots & \alpha_0 & \ldots 
+\end{array}\right]$
+\caption{A group matrix.}
+\label{fig:groupmatrix}
+\end{center}
+\end{figure}
+The $G$-matrix of a listing can thus be viewed as a matrix with columns labelled by the elements in the listing and rows labelled by the inverses of the elements in the listing.
+Each matrix entry is the product of its row label and its column label.
+
+For example  the group matrix of the listing $\{1 , g , g^2 , g^3 , g^4 , g^5 , g^6 \}$ of $\mathbf{C}_7$ is that in square brackets in figure \ref{fig:groupmatrixcseven}.
+\begin{figure}[htbp]
+\begin{center}		
+$
+\begin{array}{@{ }r|@{  }r@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }l@{ }}
+ 		& & 1 & g & g^2 & g^3 & g^4 & g^5 & g^6 & \\
+		\hline
+ 		& &   &   &     &     &     &     &     & \\
+       \begin{array}{c} 1    \\ g^6  \\ g^5  \\ g^4  \\ g^3  \\ g^2 \\ g     \end{array} &
+
+       \left. 
+       \begin{array}{c} \\   \\      \\      \\      \\      \\      \\ \\   \end{array}
+       \right[
+     & \begin{array}{c} 1    \\ g^6  \\ g^5  \\ g^4  \\ g^3  \\ g^2  \\ g    \end{array}
+     & \begin{array}{c} g    \\ 1    \\ g^6  \\ g^5  \\ g^4  \\ g^3  \\ g^2  \end{array}
+     & \begin{array}{c} g^2  \\ g    \\ 1    \\ g^6  \\ g^5  \\ g^4  \\ g^3  \end{array}
+     & \begin{array}{c} g^3  \\ g^2  \\ g    \\ 1    \\ g^6  \\ g^5  \\ g^4  \end{array}
+     & \begin{array}{c} g^4  \\ g^3  \\ g^2  \\ g    \\ 1    \\ g^6  \\ g^5  \end{array}
+     & \begin{array}{c} g^5  \\ g^4  \\ g^3  \\ g^2  \\ g    \\ 1    \\ g^6  \end{array}
+     & \begin{array}{c} g^6  \\ g^5  \\ g^4  \\ g^3  \\ g^2  \\ g    \\ 1    \end{array}
+     & \left] 
+	   \begin{array}{c} \\   \\      \\      \\      \\      \\      \\ \\   \end{array}
+	   \right.
+\end{array}
+$
+\caption{A group matrix of $\mathbf{C}_7$.}
+\label{fig:groupmatrixcseven}
+\end{center}
+\end{figure}
+The column labels appear above the horizontal black line at the top and the row labels appear to the left of the black line on the left.
+Changing the listing of the group changes the group matrix.
+Another example, of a group matrix of the same group under a different listing $\{g,1,g^3,g^2,g^5,g^4,g^6\}$ is given in figure \ref{fig:othergroupmatrixcseven}.
+\begin{figure}[htbp]
+\begin{center}
+$
+\begin{array}{@{ }r|@{  }r@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }l@{ }}
+ 		& & g & 1 & g^3 & g^2 & g^5 & g^4 & g^6 & \\
+		\hline
+ 		& &   &   &     &     &     &     &     & \\
+       \begin{array}{c} g^6    \\ 1  \\ g^4  \\ g^5  \\ g^2  \\ g^3 \\ g     \end{array} &
+
+       \left. 
+       \begin{array}{c} \\   \\      \\      \\      \\      \\      \\ \\   \end{array}
+       \right[
+     & \begin{array}{c} 1    \\ g    \\ g^5  \\ g^6  \\ g^3  \\ g^4  \\ g^2  \end{array}
+     & \begin{array}{c} g^6  \\ 1    \\ g^4  \\ g^5  \\ g^2  \\ g^3  \\ g    \end{array}
+     & \begin{array}{c} g^2  \\ g^3  \\ 1    \\ g    \\ g^5  \\ g^6  \\ g^4  \end{array}
+     & \begin{array}{c} g    \\ g^2  \\ g^6  \\ 1    \\ g^4  \\ g^5  \\ g^3  \end{array}
+     & \begin{array}{c} g^4  \\ g^5  \\ g^2  \\ g^3  \\ 1    \\ g    \\ g^6  \end{array}
+     & \begin{array}{c} g^3  \\ g^4  \\ g    \\ g^2  \\ g^6  \\ 1    \\ g^5  \end{array}
+     & \begin{array}{c} g^5  \\ g^6  \\ g^3  \\ g^4  \\ g    \\ g^2  \\ 1    \end{array}
+     & \left] 
+	   \begin{array}{c} \\   \\      \\      \\      \\      \\      \\ \\   \end{array}
+	   \right.
+\end{array}
+$
+\caption{Another group matrix of $\mathbf{C}_7$.}
+\label{fig:othergroupmatrixcseven}
+\end{center}
+\end{figure}
+This second group matrix is a different matrix from the first.
+
+Notice that the first example is a circulant matrix but the second is not.
+Certain group matrices admit to properties that others of the same group do not.
+We now define the group ring matrix of a group ring element according to a listing.
+
+\subsection{Group Ring Matrices}
+\label{sect:rgmatrices}
+The \emph{group ring matrix} of an element $u$ in a group ring $RG$, according to the listing $\{g_1 , g_2 , \ldots , g_n \}$ of the group $G$, is the $|G|$ by $|G|$ matrix with entries over the ring $R$ where the entry in the $i^{\textrm{th}}$ row and $j^{\textrm{th}}$ column is the coefficient of the group element $g_i^{-1} g_j$ in $u$~\cite{hur07,hur09}.
+The group ring matrix of such an element $u$ is display in figure \ref{fig:groupringmatrix} where $\alpha_g$ denotes the coefficient of the group element $g$ in the group ring element $u$.
+\begin{figure}[htbp]
+\begin{center}
+$\left[\begin{array}{lllll}
+\alpha_{g_1^{-1}g_1} & \alpha_{g_1^{-1}g_2} &\alpha_{g_1^{-1}g_3} 
+ &  \ldots & \alpha_{g_1^{-1}g_n} \\
+
+\alpha_{g_2^{-1}g_1} & \alpha_{g_2^{-1}g_2} &\alpha_{g_2^{-1}g_3} 
+ &  \ldots & \alpha_{g_2^{-1}g_n} \\ 
+
+\vdots & \vdots & \vdots &\ddots &\vdots \\
+
+\alpha_{g_n^{-1}g_1} & \alpha_{g_n^{-1}g_2} &\alpha_{g_n^{-1}g_3} 
+ &  \ldots & \alpha_{g_n^{-1}g_n} 
+%\ldots & \ldots & \ldots & \alpha_0 & \ldots 
+\end{array}\right] $
+\caption{A Group Ring Matrix.}
+\label{fig:groupringmatrix}
+\end{center}
+\end{figure}
+Thus an element's group ring matrix is the matrix constructed by replacing the entries in the group matrix with their coefficients in the element.
+Throughout this text we will use the convention that group ring elements are denoted by lowercase letters and their respective group ring matrices are denoted by those letters in uppercase.
+
+As an example take the element $1+g+g^3$ in the group ring $\mathbb{Z}_2 \mathbf{C}_7$ using the listing $\{ 1 , g , g^2 , g^3 , g^4 , g^5 , g^6 \}$ from above.
+The coefficients of the elements in the listing are then $1,1,0,1,0,0$ and $0$ respectfully.
+The group ring matrix is given in figure \ref{fig:circulantrgmat}.
+\begin{figure}[htbp]
+\begin{center}
+\[
+\left[
+\begin{array}{ccccccc}
+1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 0 & 0 & 1 
+\end{array}
+\right]
+\]
+\caption{A group ring matrix.}
+\label{fig:circulantrgmat}
+\end{center}
+\end{figure}
+Notice that since the group matrix is circulant so too is the group ring matrix.
+The group ring matrices of all of the group ring elements will be circulant according to this listing.
+
+The set of all group ring matrices of the elements of a group ring under a given listing is a ring itself under matrix addition and multiplication.
+This ring is isomorphic to the group ring~\cite{hur06}.
+Should we change the listing of the group in question, and thus change the group matrix, we will also change the group ring matrices of the group ring elements.
+Thus there is one group ring matrix per element in a group ring, per listing of the group.
+In the next section we define two important properties of group ring elements that are defined in terms of properties of their group ring matrices.
+
+\subsection{Rank and Transpose}
+\label{sect:ranktranspose}
+In the following sections we assume that the underlying ring of each group ring is a field.
+We now define two terms regarding group ring elements: rank and transpose.
+We start with the latter.
+The \emph{transpose} of a group ring element $u = \sum_i \alpha_i g_i$ is the group ring element $u^{\textrm{T}} = \sum_i \alpha_i g_i^{-1}$, in which the coefficient of each group element in $u$ is the coefficient of its inverse~\cite{hur07,hur09}.
+This definition ensures that the transpose of a group ring matrix of an element is the group ring matrix of the transpose of the element, no matter what the listing.
+For example the transpose of the group ring element $u=1+g+g^3$ in $\mathbb{Z}_2 \mathbf{C}_7$ is $u^{\textrm{T}} = 1^{-1} + g^{-1} + g^{-3} = 1 + g^6 + g^4 = 1+ g^4+g^6$.
+Figure \ref{fig:othergmatc7} shows the group ring matrix of $u^{\textrm{T}}$ according to the listing $\{1,g,g^2,g^3,g^4,g^5,g^6\}$.
+\begin{figure}[htbp]
+\begin{center}
+\[
+\left[
+\begin{array}{ccccccc}
+1 & 0 & 0 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+1 & 0 & 1 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 0 & 1 & 1
+\end{array}
+\right]
+\]
+\caption{The group ring matrix of $u^T$.}
+\label{fig:othergmatc7}
+\end{center}
+\end{figure}
+The matrix is the transpose of the group ring matrix of $u$ given in figure \ref{fig:circulantrgmat}.
+
+The second term we define is rank.
+The \emph{rank} of a group ring element $u$ is the rank of the group ring matrix of $u$ according to any listing~\cite{hur07,hur09}.
+For example the reduced row echelon form of the group ring matrix of $u$ according to the listing $\{1,g,g^2,g^3,g^4,g^5,g^6\}$ is displayed in figure \ref{fig:rrefrgmatuc7}.
+\begin{figure}[htbp]
+\begin{center}
+\[
+\left[
+\begin{array}{ccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{array}
+\right]
+\]
+\caption{The reduced row echelon form of $u$.}
+\label{fig:rrefrgmatuc7}
+\end{center}
+\end{figure}
+Evidently the group ring matrix is of rank four and hence the rank of $u$ is four.
+The linear independence of the rows of the group ring matrix is closely related to the linear independence of the set $Gu$, which we discuss in  section \ref{sect:rggeneratormatrices}.
+
+\section{Group Ring Codes}
+In the following section we discuss group ring codes as defined in Hurley and Hurley's papers on the subject~\cite{hur07,hur09}.
+Again we assume that the underlying ring of each group ring is a field.
+Two different types of group ring code are defined in that paper: zero divisor codes and unit derived codes.
+In this thesis we only discuss zero divisor codes.
+
+Let $u$ be a left zero divisor in a group ring $RG$ and let $W$ be a submodule of $RG$ with basis $S \subseteq G$.
+The set of group ring elements $Wu$ is called the (left) \emph{zero divisor code} of the zero divisor $u$ and the submodule $W$.
+In the case where $RG$ is non-commutative we may also define a (right) group ring code $uW$.
+We will always use the former definition in this thesis however.
+The element $u$ is called the generator of the zero divisor code.
+The code is a submodule of $RG$ itself and has basis $Su$~\cite{hur07,hur09}.
+The elements of a zero divisor code are called group ring codewords.
+
+As an example we use the group ring $\mathbb{Z}_2 \mathbf{C}_7$. 
+Let $W$ be the submodule generated by the set of group elements $S = \{1,g,g^2,g^3\}$ in $\mathbf{C}_7$ and let $u$ be the zero divisor $1+g+g^3$ in the group ring.
+The group ring code of $u$ and $W$ is then $\mathcal{C} = Wu = \{ (a_0 1 + a_1 g + a_2 g^2 + a_3 g^3)u \mid a_0,a_1,a_2,a_3 \in \mathbb{Z}_2 \}$.
+
+Earlier we stated that the only codes we construct in this thesis are linear block codes.
+Group ring codes are linear block codes when $R$ is a field.
+We only consider the case in which $R$ is the finite field with two elements in this thesis.
+Irrespective of $R$ being a field, group ring codes have length and dimension.
+We discuss these terms now in that regard.
+
+\subsection{Length and Dimension}
+We use the same notation from the previous section, where $W$ is a submodule of the group ring $RG$ with basis $S$ and $u$ is a zero divisor in $RG$.
+The \emph{length} of a zero divisor code is the order of the group $G$.
+The \emph{dimension} of a zero divisor code $Wu$ is the maximum number of linearly independent elements in $Su$ over $R$.
+Since $S$ is a subset of the group $G$ we have that the maximum number of linearly independent elements in $Su$ over $R$ is less than or equal to that in $Gu$.
+
+Where the maximum number of linearly independent elements in $Su$ is equal to that in $Gu$ the code is a left ideal in the group ring~\cite{hur07,hur09}.
+In fact it is the principal left ideal of $u$: $Wu = (RG)u$~\cite{hur07,hur09}.
+In subsequent chapters we will deal only with codes that are principal left ideals.
+In the next section we discuss a method for constructing a generator matrix for a group ring code.
+
+\subsection{Generator Matrices}
+\label{sect:rggeneratormatrices}
+For a fixed listing of the group $G$ we get a fixed group matrix.
+The columns of the group matrix are labelled by the elements of the listing.
+The rows are labelled by the inverses of the elements of the listing.
+The group ring matrices of the elements of the group ring are constructed according to this group matrix.
+The ring of all group ring matrices according to the given group matrix is isomorphic to the group ring~\cite{hur09}.
+Thus the product of two group ring matrices is still a group ring matrix according to the group matrix.
+
+Let the $i^{\textrm{th}}$ element of the listing be that which is the identity of the group.
+Then the $i^{\textrm{th}}$ row of the group matrix is exactly the listing itself, albeit in matrix row form.
+Thus the $i^{\textrm{th}}$ row of each of the group ring matrices is a vector containing the coefficients of the matrix's corresponding group ring element in order according to the listing.
+
+Now consider the group ring element $g_j u$ where $g_j$ is the $j^{\textrm{th}}$ element of the group listing.\footnote{Here we are ignoring the distinction between the group element $g_j$ and the group ring element $g_j$ for the purposes of clarity. The distinction is obvious from the context in which each appears.}
+The group ring matrix of $g_j u$ is equal to the product of the group ring matrix $G_j$ of $g_j$ with the group ring matrix $U$ of $u$.
+Consider the $i^{\textrm{th}}$ row of the matrix in question $G_j U$.
+Its entries are the dot products of row $i$ of $G_j$ with each of the columns of $U$ in order.
+The $i^{\textrm{th}}$ row of $G_j$ contains a one in the $j^{\textrm{th}}$ position and zeros everywhere else.
+Thus the $j^{\textrm{th}}$ row of $U$ must consist of the coefficients of $g_j u$ written in a vector according to the listing of the group.
+We can use this fact to create a component vector form of the code.
+
+\subsubsection{Vector Forms of Codes}
+\label{sect:vectorforms}
+The code $Wu$ is an $R$-module generated by the basis $Su$~\cite{hur07,hur09}.
+The code is the set of all linear combinations of the elements of $Su$ over $R$.
+Consider the positions of the elements of $S$ in the group listing.
+In light of the argument in the previous section the set of all linear combinations over $R$ of the rows of $U$ corresponding to these positions is another form of the same code.
+The only difference between the code that is comprised of linear combinations of the group ring elements and the code comprised of those of the rows of $U$ is the notation used.
+We will call the former the \emph{group ring form} of the code and the latter the \emph{vector form} of the code.
+
+The rows of $U$ corresponding to the elements of $S$ form a basis for the vector form of the code and thus can be used to form a generator matrix for the code.
+When the ring $R$ is a field the group ring is a vector space over that field and the code is a subspace.
+Thus the code is a linear block code.
+In the case of the code being the principal left ideal of $u$ in the group ring, the vector form of the code is the span of all of the rows of $U$.
+Conversely we can construct a code that is a principal ideal in a group ring by taking the group ring form of the row space of the group ring matrix of a zero divisor.
+This is exactly how we will construct the codes in this thesis.
+
+\subsubsection{Equivalent Vector Forms}
+\label{sect:equivforms}
+Note that the group ring form of a code does not necessarily conform to a listing of the underlying group.
+The addition defined on the group ring enables us to add group ring codewords without the terms of the codewords following any particular listing.
+The different vector forms of a group ring code pertaining to the different group listings are thus all equivalent.
+In the next section we discuss the fact that we can also construct check matrices for the vector forms of group ring codes.
+
+\subsubsection{Check Matrices}
+Let $\mathcal{C}$ be a zero divisor code generated by an element $u$ in $RG$.
+An element $x$ in $RG$ with the property $cx = 0$ if and only if $c \in RG$ is in $\mathcal{C}$ is called a \emph{check element} for $\mathcal{C}$.
+Since $u$ is a zero divisor there exists another element $v$ in $RG$ such that $uv = 0$.
+The code is the set $Wu$ and thus $v$ has the property that $cv = 0$ for all $c$ in $\mathcal{C}$.
+Thus $v$ is a check element if $yv$ is not equal to zero when $y \notin \mathcal{C}$.
+That is the case when the rank of $u$ plus the rank of $v$ is equal to the order of $G$~\cite{hur07,hur09}.
+This is obvious from the fact that a matrix's rank plus the dimension of its null-space is equal to the number of columns it has~\cite[p.~245]{mac99}.
+
+We are now in a position to consider codes that are ideals in group rings other than those involving cyclic groups.
+We will consider the ideals in group rings over dihedral groups.
+First we define what a dihedral group is.
+
+\section{Dihedral Groups}
+One of the first areas of study in which groups arose was that of the symmetries of geometrical shapes.
+A \emph{dihedral group} $\mathbf{D}_{n}$ of order $n=2k$ is the set of symmetries of the regular $k$-gon together with the operation of the composition of symmetries~\cite[p.~60]{mac99}.
+Regular $k$-gons have two types of symmetries: rotational and reflectional.
+The rotation of a regular $k$-gon through $2 \pi / k$ radians is the first rotational symmetry.
+In the dihedral group of order $2k$ we represent this rotational symmetry by the letter $b$ and it is of order $k$.
+Pivoting the regular $k$-gon through a line joining two opposing vertices in the case where $k$ is even or through the midpoint of a side and the opposing vertex when $k$ is odd is a symmetry of the shape.
+We represent this symmetry by the letter $a$ and it is of order two.
+The regular $k$-gon has thus $n=2k$ symmetries in total and these can all be described as different compositions of the symmetries $a$ and $b$.
+
+Dihedral groups are non-commutative, as witnessed by the fact that applying the symmetry $a$ to the regular $k$-gon and then applying $b$ is not equivalent to first applying $b$ and then $a$.
+The dihedral group is generally denoted/defined as $\mathbf{D}_{2k} = \langle a , b \mid a^2 , b^k , (ab)^2 \rangle$.
+The group matrices pertaining to listings of the dihedral group are very interesting and are discussed in the next section.
+
+\subsection{Dihedral $RG$-Matrices}
+\label{sect:dihedralrgmatrices}
+The most common way to list the elements of a dihedral group $\mathbf{D}_{2k} = \langle a , b \rangle $ is $\{ 1 , b , b^2 , \ldots , b^{k-1} , a , ab , ab^2 , \ldots , ab^{k-1} \} $.
+This is one of the main listings we will use throughout this thesis as it will lead to the illustration of some nice properties of the zero divisor codes we construct.
+In figure \ref{fig:groupmatrixdeight} we have as an example constructed the group matrix of the dihedral group of order eight under this listing.
+{\renewcommand\arraystretch{1.5}
+\begin{figure}[htbp]
+\begin{center}
+$
+\begin{array}{@{ }r|@{  }r@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }l@{ }}
+ & & 1 & b & b^2 & b^3 & a & ab & ab^2 & ab^3 & \\
+\hline
+ & & & & & & & & & & \\
+       \begin{array}{c} 1    \\ b^3  \\ b^2  \\ b    \\ a    \\ ab   \\ ab^2 \\ ab^3 \end{array} &
+       \left. 
+       \begin{array}{c} \\   \\      \\      \\      \\      \\      \\      \\ \\   \end{array}
+       \right[
+     & \begin{array}{c} 1    \\ b^3  \\ b^2  \\ b    \\ a    \\ ab   \\ ab^2 \\ ab^3 \end{array}
+     & \begin{array}{c} b    \\ 1    \\ b^3  \\ b^2  \\ ab   \\ ab^2 \\ ab^3 \\ a    \end{array}
+     & \begin{array}{c} b^2  \\ b    \\ 1    \\ b^3  \\ ab^2 \\ ab^3 \\ a    \\ ab   \end{array}
+     & \begin{array}{c} b^3  \\ b^2  \\ b    \\ 1    \\ ab^3 \\ a    \\ ab   \\ ab^2 \end{array}
+     & \begin{array}{c} a    \\ ab   \\ ab^2 \\ ab^3 \\ 1    \\ b^3  \\ b^2  \\ b    \end{array}
+     & \begin{array}{c} ab   \\ ab^2 \\ ab^3 \\ a    \\ b    \\ 1    \\ b^3  \\ b^2  \end{array}
+     & \begin{array}{c} ab^2 \\ ab^3 \\ a    \\ ab   \\ b^2  \\ b    \\ 1    \\ b^3  \end{array}
+     & \begin{array}{c} ab^3 \\ a    \\ ab   \\ ab^2 \\ b^3  \\ b^2  \\ b    \\ 1    \end{array}
+     & \left] 
+	   \begin{array}{c} \\ \\ \\ \\ \\ \\ \\ \\ \\ \end{array}
+	   \right.
+\end{array}
+$
+\caption{A group matrix of $\mathbf{D}_8$.}
+\label{fig:groupmatrixdeight}
+\end{center}
+\end{figure}
+}
+According to this group matrix the element $1+a+ab+ab^2$ in $\mathbb{Z}_2 \mathbf{D}_8$ has the group ring matrix given in figure \ref{fig:rgmatz2d8}.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{cccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 & 0 & 0 & 1
+\end{array} \right] \]
+\caption{The group ring matrix of $u$.}
+\label{fig:rgmatz2d8}
+\end{center}
+\end{figure}
+Notice that this matrix is of the form:
+\[\left[ \begin{array}{c|c}
+I & A \\
+\hline
+A & I
+\end{array} \right] \]
+where $I$ is the four by four identity matrix and $A$ is a reverse circulant matrix.
+A \emph{reverse circulant} matrix is one in which the $i^{\textrm{th}}$ row is the first right cyclic shift of the $(i+1)^{\textrm{st}}$ row~\cite[p.~377]{huf03}.
+Elements with group ring matrices of this form lead to interesting codes and we will concentrate on such codes in this thesis.
+
+The code $\mathcal{C} = (\mathbb{Z}_2 \mathbf{D}_8)u$ where $u$ is the element $1+a+ab+ab^2$ is the group ring form of the code that is the row space of the above matrix.
+The element $u$ has the property that $u^2$ is equal to zero and thus it is a (both left and right) zero divisor.
+The reduced row echelon form of the group ring matrix turns out to be that given in figure \ref{fig:rrefrgmatz2d8}.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{cccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\end{array} \right] \]
+\caption{In reduced row echelon form.}
+\label{fig:rrefrgmatz2d8}
+\end{center}
+\end{figure}
+The code is of length eight.
+Its rank, as is evident from the above matrix, is four and thus the dimension of the code $\mathcal{C}$ is four.
+The first four rows of the matrix form a generator matrix for the code.
+The code is self-dual, a property we will further explore in the next section in terms of group rings.
+
+\subsection{Self-Dual Zero Divisor Codes}
+\label{sect:selfdualzdcodes}
+A zero divisor code generated by an element $u$ is self-dual if and only if $uu^{\textrm{T}}$ is equal to zero and the rank of $u$ is half the order of the group~\cite{hur07,hur09}.
+The generator $u$ in the example from the previous section is equal to its own transpose since the identity of $\mathbf{D}_8$ and all of the elements of the form $ab^i$ for $i$ from zero to three are equal to their own inverses.
+Also $u^2$ is equal to zero and its rank is four, half the order of $\mathbf{D}_8$.
+Hence the code $\mathcal{C}$ generated by $u$ is self-dual.
+It turns out that the code is actually a well known code called the extended Hamming $(8,4,4)$ code.
+
+\section{The Extended Hamming Code}
+\label{sect:exthamm}
+In earlier sections we discussed the Hamming $(7,4,3)$ linear block code.
+This code can be extended by appending an even parity bit to each of its codewords which increases the code's length by one.
+An \emph{even parity bit} is an extra component appended to a codeword in order to ensure that the codeword is of even weight.
+Thus a $0$ is appended to the codewords in the original code that are of even weight and a $1$ is appended to the codewords of odd weight.
+A new code formed from the appendage of a parity bit to all of a code's codewords is called an \emph{extended} code.
+
+Adding an even parity bit to the Hamming $(7,4,3)$ code creates the code known as the extended Hamming $(8,4,4)$ code.
+The dimension of the code remains unchanged.
+The minimum distance of the Hamming $(7,4,3)$ code is odd and the minimum distance of a linear block code is equal to the least of the weights of its codewords.
+All of the codewords of weight three in the original code are converted into codewords of weight four.
+So the minimum distance of the extended Hamming $(8,4,4)$ code is four.
+
+\subsection{Generator Matrix}
+Consider the generator matrix given in figure \ref{fig:equivhamming} for the Hamming $(7,4,3)$.
+To create a generator matrix for the extended Hamming $(8,4,4)$ code we append a column to the right hand side of this matrix with entries that are the even parity bits for the corresponding rows.
+Thus a generator matrix for the extended Hamming $(8,4,4)$ code is that given in figure \ref{fig:exthamminggenerator}.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{cccccccc}
+1 & 0 & 0 & 0 & 1 & 1 & 0 & \textbf{1} \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 & \textbf{1} \\
+0 & 0 & 1 & 0 & 1 & 1 & 1 & \textbf{0} \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 & \textbf{1}
+\end{array} \right] \]
+\caption{An extended Hamming code generator matrix.}
+\label{fig:exthamminggenerator}
+\end{center}
+\end{figure}
+The new entries added to the matrix are in bold type.
+
+It is straight-forward to show that this matrix generates a code equivalent to the code generated by the zero divisor in section \ref{sect:dihedralrgmatrices}.
+We re-order the rows of the matrix so that the new matrix consists of rows three, one, four and two of the above matrix in that order.
+The new matrix is shown if figure \ref{fig:newexthamminggen}.
+\begin{figure}[htbp]
+\begin{center}
+\[ \left[ \begin{array}{cccccccc}
+0 & 0 & 1 & 0 & 1 & 1 & 1 & \textbf{0} \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & \textbf{1} \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 & \textbf{1} \\
+0 & 1 & 0 & 0 & 0 & 1 & 1 & \textbf{1}
+\end{array} \right] \]
+\caption{A new extended Hamming code generator matrix.}
+\label{fig:newexthamminggen}
+\end{center}
+\end{figure}
+The new matrix generates the same code as that in figure \ref{fig:exthamminggenerator}, since the basis elements of the row space remain unchanged.
+Then re-ordering the first four columns to create the four by four identity matrix in those columns of the new matrix gives a matrix that generates an equivalent code.
+The new matrix is of the form $G=[I|A]$ where $I$ is the four by four identity matrix and $A$ is a four by four reverse circulant matrix.
+In fact the new matrix is the exact same generator matrix constructed for the code given in section \ref{sect:dihedralrgmatrices}.
+Thus the zero divisor code constructed there is equivalent to the extended Hamming $(8,4,4)$ code.
+The Hamming $(8,4,4)$ code is thus the principal left ideal of the group ring element $u$ given in that section.
+This is significant since the code cannot be constructed as a cyclic code, a fact shown in the next section.
+
+\subsection{Not Cyclic}
+\label{sect:notcyclic}
+The binary cyclic codes of length $n$ are precisely the principal ideals of the factors of $x^n+1$ in the residue class ring $\mathbb{Z}_2[x]/ \langle x^n+1 \rangle$~\cite[p.~101]{bla04}.
+Thus the binary cyclic codes of length eight are generated by the factors of $x^8+1$.
+Now $x^8+1 = (x^4+1)^2 = (x^2+1)^4 = (x+1)^8$ and the dimension of a cyclic code is its length minus the degree of its generator polynomial.
+The Hamming code is of dimension four so its generator polynomial would have to have degree eight minus four which is four.
+The only cyclic code of length eight and dimension four is generated by the polynomial $g(x)=(x+1)^4=x^4+1$.
+The generator polynomial is a polynomial codeword itself however and is only of weight two.
+Thus it cannot generate a code of minimum distance four and thus does not generate the extended Hamming $(8,4,4)$ code.
+
+\subsection{Using the Dihedral Group}
+In light of the fact that the extended Hamming code cannot be generated by a polynomial, the group ring construction of it is quite interesting.
+It is a construction of the code that closely resembles a polynomial construction.
+The only real difference is that instead of using the cyclic group the dihedral group was used.
+In the following chapters we will construct other non-cyclic codes using dihedral group rings.
